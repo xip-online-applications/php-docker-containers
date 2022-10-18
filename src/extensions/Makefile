@@ -18,5 +18,19 @@ build:
 	cd xml ; make build
 	cd zip ; make build
 
-	cd dev ; make build
-	cd prod ; make build
+for-version:
+	cd bcmath ; make for-version VERSION=$(VERSION)
+	cd composer ; make for-version VERSION=$(VERSION)
+	cd curl ; make for-version VERSION=$(VERSION)
+	cd datadog ; make for-version VERSION=$(VERSION)
+	cd intl ; make for-version VERSION=$(VERSION)
+	cd mbstring ; make for-version VERSION=$(VERSION)
+	cd mongodb ; make for-version VERSION=$(VERSION)
+	cd mysql ; make for-version VERSION=$(VERSION)
+	cd opcache ; make for-version VERSION=$(VERSION)
+	cd pcntl ; make for-version VERSION=$(VERSION)
+	cd redis ; make for-version VERSION=$(VERSION)
+	cd saxonc ; make for-version VERSION=$(VERSION)
+	cd xdebug ; make for-version VERSION=$(VERSION)
+	cd xml ; make for-version VERSION=$(VERSION)
+	cd zip ; make for-version VERSION=$(VERSION)

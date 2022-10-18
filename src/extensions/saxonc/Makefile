@@ -7,4 +7,6 @@ build:
 #	make for-version VERSION=8.1 (NOT SUPPORTED)
 
 for-version:
+ifeq ($(VERSION), "7.4")
 	docker buildx build --platform linux/amd64 --pull --tag xiponlineapplications/php-extra-saxonc:$(VERSION) --build-arg PHP_VERSION=$(VERSION) --push .
+endif

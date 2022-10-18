@@ -7,4 +7,5 @@ build:
 	make for-version VERSION=8.1
 
 for-version:
-	docker buildx build --platform linux/amd64,linux/arm64 --tag xiponlineapplications/php:$(VERSION) --file $(VERSION).Dockerfile --push .
+	docker buildx build --platform linux/amd64,linux/arm64 --tag xiponlineapplications/php-build:$(VERSION) --file $(VERSION).Dockerfile --push .
+	docker buildx build --platform linux/amd64,linux/arm64 --tag xiponlineapplications/php:$(VERSION) --file php.Dockerfile --build-arg VERSION=$(VERSION) --push .

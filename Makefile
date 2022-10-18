@@ -10,3 +10,9 @@ base: # Build the custom extensions
 
 extensions: # Build the custom extensions
 	cd src/extensions ; make build
+	cd src/envs ; make build
+
+for-version: # Build for a specific PHP version
+	cd src/base; make for-version VERSION=$(VERSION)
+	cd src/extensions; make for-version VERSION=$(VERSION)
+	cd src/envs; make for-version VERSION=$(VERSION)
