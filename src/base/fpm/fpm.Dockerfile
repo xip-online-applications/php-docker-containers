@@ -1,8 +1,8 @@
-ARG VERSION
+ARG RELEASE_TAG
 
-FROM xiponlineapplications/php:${VERSION} as base
+FROM xiponlineapplications/php:${RELEASE_TAG} as base
 
-FROM xiponlineapplications/php-build:${VERSION}-fpm
+FROM xiponlineapplications/php-build:${RELEASE_TAG}-fpm
 
 EXPOSE 9000
 

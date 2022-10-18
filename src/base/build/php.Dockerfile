@@ -1,6 +1,6 @@
-ARG VERSION
+ARG RELEASE_TAG
 
-FROM xiponlineapplications/php-build:${VERSION}
+FROM xiponlineapplications/php-build:${RELEASE_TAG}
 
 ENV TM_PHP_BIN_DIR=/opt/bin
 ENV TM_PHP_CONF_DIR=/opt/php/conf.d
