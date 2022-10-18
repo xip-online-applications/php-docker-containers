@@ -20,6 +20,6 @@ RUN mkdir -p \
     $TM_PHP_LIB_DIR
 
 RUN apt-get update && apt-get install -y \
-  git zip unzip openssl
+  git zip unzip openssl bash
 
 COPY php.ini /usr/local/etc/php/php.ini
