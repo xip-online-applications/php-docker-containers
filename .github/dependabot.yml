@@ -4,6 +4,10 @@ updates:
     directory: "/src/base/build"
     schedule:
       interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/src/base/fpm"
+    schedule:
+      interval: "daily"
 
   - package-ecosystem: "github-actions"
     directory: "/"

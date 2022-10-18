@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-.PHONY: all base extensions
+.PHONY: all base extensions for-version
 
 all:
 	make base

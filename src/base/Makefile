@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-.PHONY: all build runtime
+.PHONY: build for-version
 
 build:
 	cd build ; make build
