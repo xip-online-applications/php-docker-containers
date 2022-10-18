@@ -6,21 +6,21 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.0"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.1"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
 
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/7.4"
@@ -28,18 +28,18 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.0"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.1"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major" ]
+        update-types: [ "version-update:semver-minor" ]
