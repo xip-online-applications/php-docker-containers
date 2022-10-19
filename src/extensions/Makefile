@@ -35,4 +35,5 @@ for-version:
 	cd saxonc ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd xdebug ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd xml ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
+	cd xsl ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd zip ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
