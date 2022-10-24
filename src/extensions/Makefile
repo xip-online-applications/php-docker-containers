@@ -38,4 +38,4 @@ for-version:
 	cd xml ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd xsl ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd zip ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
-	cd node ; make for-version RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
+	cd node ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
