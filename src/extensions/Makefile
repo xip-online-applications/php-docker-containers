@@ -19,6 +19,7 @@ build:
 	cd xdebug ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd xml ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd zip ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
+	cd node ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 
 for-version:
 	cd bcmath ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
@@ -37,3 +38,4 @@ for-version:
 	cd xml ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd xsl ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd zip ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
+	cd node ; make for-version RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
