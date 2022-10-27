@@ -3,7 +3,7 @@ FROM xiponlineapplications/php:$PHP_VERSION AS ext
 
 RUN mkdir -p /tmp/conf.d
 RUN touch /tmp/conf.d/ext-xdebug.ini
-RUN touch /tmp/conf.d/dev-php.ini
+RUN touch /tmp/conf.d/zz-dev-php.ini
 
 FROM scratch
 COPY --from=ext /tmp/conf.d/ /opt/php/conf.d/
