@@ -4,6 +4,7 @@ SHELL := /bin/bash
 REPO_BASE := $(REPO)-extra
 
 build:
+	cd amqp ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd bcmath ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd composer ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd curl ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
@@ -23,6 +24,7 @@ build:
 	cd node ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 
 for-version:
+	cd amqp ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd bcmath ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd composer ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
 	cd curl ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
