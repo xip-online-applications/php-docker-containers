@@ -1,4 +1,4 @@
-name: Create and publish the base container
+name: Create and publish the base container.
 
 on:
   push:
