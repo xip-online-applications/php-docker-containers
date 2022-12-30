@@ -1,0 +1,8 @@
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {}
+	},
+	"postCreateCommand": "make prepare"
+}

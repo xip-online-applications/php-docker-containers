@@ -1,8 +1,12 @@
 ARG RELEASE_TAG
 
-FROM xiponlineapplications/php:${RELEASE_TAG} as base
+FROM ${REPO}:${RELEASE_TAG} as base
 
-FROM xiponlineapplications/php-build:${RELEASE_TAG}-fpm
+FROM ${REPO_BUILD}:${RELEASE_TAG}-fpm
+
+LABEL org.opencontainers.image.source="https://github.com/xip-online-applications/php-docker-containers"
+LABEL org.opencontainers.image.description="XIP Docker containers: PHP-FPM container"
+LABEL org.opencontainers.image.licenses="MIT"
 
 EXPOSE 9000
 

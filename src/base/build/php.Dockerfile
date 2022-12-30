@@ -1,6 +1,11 @@
+ARG REPO_BUILD
 ARG RELEASE_TAG
 
-FROM xiponlineapplications/php-build:${RELEASE_TAG}
+FROM ${REPO_BUILD}:${RELEASE_TAG}
+
+LABEL org.opencontainers.image.source="https://github.com/xip-online-applications/php-docker-containers"
+LABEL org.opencontainers.image.description="XIP Docker containers: PHP base container"
+LABEL org.opencontainers.image.licenses="MIT"
 
 ENV TM_PHP_BIN_DIR=/opt/bin
 ENV TM_PHP_CONF_DIR=/opt/php/conf.d
