@@ -1,0 +1,29 @@
+name: Build the latest containes.
+
+on:
+  push:
+    branches: ['main']
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  base:
+    uses: ./.github/workflows/build-wf.yaml
+    with:
+      registry: ghcr.io
+      actor: ${{ github.actor }}
+      command: "make base RELEASE=${{ github.sha }}"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  extensions:
+    needs: base
+    uses: ./.github/workflows/build-wf.yaml
+    with:
+      registry: ghcr.io
+      actor: ${{ github.actor }}
+      command: "make extensions RELEASE=${{ github.sha }}"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

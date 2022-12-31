@@ -1,0 +1,28 @@
+name: Release the containers.
+
+on:
+  release:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  base:
+    uses: ./.github/workflows/build-wf.yaml
+    with:
+      registry: ghcr.io
+      actor: ${{ github.actor }}
+      command: "make release-base RELEASE=${{ github.ref_name }}"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  extensions:
+    needs: base
+    uses: ./.github/workflows/build-wf.yaml
+    with:
+      registry: ghcr.io
+      actor: ${{ github.actor }}
+      command: "make release-extensions RELEASE=${{ github.ref_name }}"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
