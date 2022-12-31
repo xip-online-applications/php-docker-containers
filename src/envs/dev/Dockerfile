@@ -1,5 +1,6 @@
+ARG REPO
 ARG PHP_VERSION
-FROM xiponlineapplications/php-extra-xdebug:$PHP_VERSION as xdebug
+FROM ${REPO}-extra-xdebug:$PHP_VERSION as xdebug
 
 FROM scratch
 COPY --from=xdebug /opt /opt

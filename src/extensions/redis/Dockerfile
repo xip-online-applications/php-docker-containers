@@ -1,5 +1,6 @@
+ARG REPO
 ARG PHP_VERSION
-FROM xiponlineapplications/php:$PHP_VERSION AS ext
+FROM ${REPO}:${PHP_VERSION} as ext
 
 RUN pecl install igbinary
 RUN pecl install -D 'enable-redis-igbinary="yes"' redis

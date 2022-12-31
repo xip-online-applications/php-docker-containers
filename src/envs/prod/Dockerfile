@@ -1,5 +1,6 @@
+ARG REPO
 ARG PHP_VERSION
-FROM xiponlineapplications/php:$PHP_VERSION AS ext
+FROM $REPO:$PHP_VERSION AS ext
 
 RUN mkdir -p /tmp/conf.d
 RUN touch /tmp/conf.d/ext-xdebug.ini

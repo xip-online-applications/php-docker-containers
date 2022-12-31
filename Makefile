@@ -29,7 +29,13 @@ for-version: # Build for a specific PHP version
 	cd src/envs; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO=$(REPO)
 
 release: # Build a release version
-	make all RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php
+	make all RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+
+release-base: # Build a release version for the base containers
+	make base RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+
+release-extensions: # Build a release version for the extensions
+	make extensions RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
 
 release-for-version: # Build a release version
-	make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php
+	make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php

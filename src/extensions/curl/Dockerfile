@@ -1,5 +1,6 @@
+ARG REPO
 ARG PHP_VERSION
-FROM xiponlineapplications/php:$PHP_VERSION AS ext
+FROM ${REPO}:${PHP_VERSION} as ext
 
 RUN apt-get update && apt-get install -y libcurl3-dev libcurl4-openssl-dev
 
