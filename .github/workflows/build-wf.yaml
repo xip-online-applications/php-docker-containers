@@ -1,4 +1,4 @@
-name: Create and publish the container workflow
+name: Create and publish containers reusable workflow.
 
 on:
   workflow_call:
@@ -17,8 +17,7 @@ on:
         required: true
 
 jobs:
-  base-containers:
-    name: Build and push base containers
+  container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
