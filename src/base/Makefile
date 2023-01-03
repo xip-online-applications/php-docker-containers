@@ -2,9 +2,5 @@ SHELL := /bin/bash
 .PHONY: build for-version
 
 build:
-	cd build ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO)
-	cd fpm ; make build RELEASE=$(RELEASE) REPO_BASE=$(REPO)
-
-for-version:
-	cd build ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO)
-	cd fpm ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO_BASE=$(REPO)
+	cd build ; make -j 4 build RELEASE=$(RELEASE) REPO_BASE=$(REPO)
+	cd fpm ; make -j 4 build RELEASE=$(RELEASE) REPO_BASE=$(REPO)

@@ -3,10 +3,11 @@ SHELL := /bin/bash
 
 REPO_BASE := $(REPO)-extra
 
-build:
-	cd dev ; make build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
-	cd prod ; make build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+build: dev prod
+	echo "Done building environments."
 
-for-version:
-	cd dev ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
-	cd prod ; make for-version VERSION=$(VERSION) RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+dev:
+	cd dev ; make build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+
+prod:
+	cd prod ; make build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)

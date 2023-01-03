@@ -6,9 +6,16 @@ REPO_BUILD := $(REPO_BASE)-build
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-build:
+build: for-version-74 for-version-80 for-version-81
+	echo "Done building base images."
+
+for-version-74:
 	make for-version VERSION=7.4 RELEASE=$(RELEASE)
+
+for-version-80:
 	make for-version VERSION=8.0 RELEASE=$(RELEASE)
+
+for-version-81:
 	make for-version VERSION=8.1 RELEASE=$(RELEASE)
 
 for-version:
