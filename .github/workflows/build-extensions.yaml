@@ -15,6 +15,7 @@ on:
 
 jobs:
   amqp:
+    name: "amqp"
     uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: amqp
@@ -24,6 +25,7 @@ jobs:
       token: ${{ secrets.token }}
 
   bcmath:
+    name: "bcmath"
     uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: bcmath

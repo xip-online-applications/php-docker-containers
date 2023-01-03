@@ -3,6 +3,9 @@ name: Create and publish base containers.
 on:
   workflow_call:
     inputs:
+      registry:
+        default: ghcr.io
+        type: string
       release:
         required: true
         type: string
@@ -15,20 +18,22 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-base-wf.yaml
+    name: "Build container"
+    uses: ./.github/workflows/build-wf.yaml
     with:
-      base: build
-      release: ${{ inputs.release }}
+      registry: ${{ input.registry }}
       actor: ${{ inputs.actor }}
+      command: "make release-base-build RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
 
   fpm:
+    name: "FPM container"
     needs: build
-    uses: ./.github/workflows/build-base-wf.yaml
+    uses: ./.github/workflows/build-wf.yaml
     with:
-      base: fpm
-      release: ${{ inputs.release }}
+      registry: ${{ input.registry }}
       actor: ${{ inputs.actor }}
+      command: "make release-base-fpm RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
