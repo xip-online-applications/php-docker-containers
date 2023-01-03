@@ -11,12 +11,12 @@ jobs:
   build:
     uses: ./.github/workflows/build-base-wf.yaml
     with:
-      extension: build
+      base: build
       release: ${{ inputs.release }}
 
   fpm:
     needs: build
     uses: ./.github/workflows/build-base-wf.yaml
     with:
-      extension: fpm
+      base: fpm
       release: ${{ inputs.release }}
