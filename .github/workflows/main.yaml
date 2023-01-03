@@ -10,13 +10,9 @@ permissions:
 
 jobs:
   base:
-    uses: ./.github/workflows/build-wf.yaml
+    uses: ./.github/workflows/build-base.yaml
     with:
-      registry: ghcr.io
-      actor: ${{ github.actor }}
-      command: "make -j4 base RELEASE=${{ github.sha }}"
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      release: ${{ github.sha }}
 
   extensions:
     needs: base

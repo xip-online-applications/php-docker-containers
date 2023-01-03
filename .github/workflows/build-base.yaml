@@ -1,0 +1,22 @@
+name: Create and publish base containers.
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        required: true
+        type: string
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-base-wf.yaml
+    with:
+      extension: build
+      release: ${{ inputs.release }}
+
+  fpm:
+    needs: build
+    uses: ./.github/workflows/build-base-wf.yaml
+    with:
+      extension: fpm
+      release: ${{ inputs.release }}

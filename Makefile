@@ -33,6 +33,9 @@ release-base: # Build a release version for the base containers
 release-extensions: # Build a release version for the extensions
 	$(MAKE) extensions RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
+release-base-%: # Build a release version for a specific extension
+	cd src/base ; $(MAKE) build-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
 release-extension-%: # Build a release version for a specific extension
 	cd src/extensions ; $(MAKE) ext-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 

@@ -1,9 +1,9 @@
-name: Create and publish extension container reusable workflow.
+name: Create and publish base container reusable workflow.
 
 on:
   workflow_call:
     inputs:
-      extension:
+      base:
         required: true
         type: string
       release:
@@ -11,11 +11,11 @@ on:
         type: string
 
 jobs:
-  extensions:
+  base:
     uses: ./.github/workflows/build-wf.yaml
     with:
       registry: ghcr.io
       actor: ${{ github.actor }}
-      command: "make release-extension-${{ inputs.extension }} RELEASE=${{ inputs.release }}"
+      command: "make release-base-${{ inputs.base }} RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
