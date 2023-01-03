@@ -9,20 +9,30 @@ permissions:
 
 jobs:
   base:
-    uses: ./.github/workflows/build-wf.yaml
+    uses: ./.github/workflows/build-base.yaml
     with:
-      registry: ghcr.io
+      release: ${{ github.ref_name }}
       actor: ${{ github.actor }}
-      command: "make -j4 release-base RELEASE=${{ github.ref_name }}"
+      stage: release
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
   extensions:
     needs: base
-    uses: ./.github/workflows/build-wf.yaml
+    uses: ./.github/workflows/build-extensions.yaml
     with:
-      registry: ghcr.io
+      release: ${{ github.ref_name }}
       actor: ${{ github.actor }}
-      command: "make -j4 release-extensions RELEASE=${{ github.ref_name }}"
+      stage: release
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  environments:
+    needs: extensions
+    uses: ./.github/workflows/build-environments.yaml
+    with:
+      release: ${{ github.ref_name }}
+      actor: ${{ github.actor }}
+      stage: release
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}

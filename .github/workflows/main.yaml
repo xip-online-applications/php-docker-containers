@@ -14,6 +14,7 @@ jobs:
     with:
       release: ${{ github.sha }}
       actor: ${{ github.actor }}
+      stage: dev
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -23,5 +24,16 @@ jobs:
     with:
       release: ${{ github.sha }}
       actor: ${{ github.actor }}
+      stage: dev
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  environments:
+    needs: extensions
+    uses: ./.github/workflows/build-environments.yaml
+    with:
+      release: ${{ github.sha }}
+      actor: ${{ github.actor }}
+      stage: dev
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}

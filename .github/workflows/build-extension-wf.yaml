@@ -9,6 +9,9 @@ on:
       release:
         required: true
         type: string
+      stage:
+        required: true
+        type: string
       actor:
         required: true
         type: string
@@ -22,6 +25,6 @@ jobs:
     with:
       registry: ghcr.io
       actor: ${{ inputs.actor }}
-      command: "make release-extension-${{ inputs.extension }} RELEASE=${{ inputs.release }}"
+      command: "make ${{ inputs.stage }}-extension-${{ inputs.extension }} RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

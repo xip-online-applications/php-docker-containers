@@ -1,4 +1,4 @@
-name: Create and publish base containers.
+name: Create and publish environment containers.
 
 on:
   workflow_call:
@@ -20,23 +20,22 @@ on:
         required: true
 
 jobs:
-  build:
-    name: "Build container"
+  dev:
+    name: "dev"
     uses: ./.github/workflows/build-wf.yaml
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-base-build RELEASE=${{ inputs.release }}"
+      command: "make ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
 
-  fpm:
-    name: "FPM container"
-    needs: build
+  prod:
+    name: "prod"
     uses: ./.github/workflows/build-wf.yaml
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-base-fpm RELEASE=${{ inputs.release }}"
+      command: "make ${{ inputs.stage }}-env-prod RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

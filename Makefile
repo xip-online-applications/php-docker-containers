@@ -24,6 +24,19 @@ extensions: # Build the custom extensions
 	cd src/extensions ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
 	cd src/envs ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
 
+## Dev stuff
+
+dev-base-%: # Build a release version for a specific extension
+	cd src/base ; $(MAKE) build-$* RELEASE=$(RELEASE) REPO=$(REPO)
+
+dev-extension-%: # Build a release version for a specific extension
+	cd src/extensions ; $(MAKE) ext-$* RELEASE=$(RELEASE) REPO=$(REPO)
+
+dev-env-%: # Build a release version for a specific environment
+	cd src/envs ; $(MAKE) env-$* RELEASE=$(RELEASE) REPO=$(REPO)
+
+## Release stuff
+
 release: # Build a release version
 	$(MAKE) all RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
