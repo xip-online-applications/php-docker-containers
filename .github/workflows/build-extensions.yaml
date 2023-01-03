@@ -127,6 +127,17 @@ jobs:
     secrets:
       token: ${{ secrets.token }}
 
+  nodejs:
+    name: "nodejs"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: nodejs
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
   opcache:
     name: "opcache"
     uses: ./.github/workflows/build-extension-wf.yaml
@@ -187,17 +198,6 @@ jobs:
     uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: zip
-      release: ${{ inputs.release }}
-      stage: ${{ inputs.stage }}
-      actor: ${{ inputs.actor }}
-    secrets:
-      token: ${{ secrets.token }}
-
-  node:
-    name: "node"
-    uses: ./.github/workflows/build-extension-wf.yaml
-    with:
-      extension: node
       release: ${{ inputs.release }}
       stage: ${{ inputs.stage }}
       actor: ${{ inputs.actor }}

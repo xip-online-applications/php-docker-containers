@@ -26,7 +26,7 @@ jobs:
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
 
@@ -36,6 +36,6 @@ jobs:
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-env-prod RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-env-prod RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

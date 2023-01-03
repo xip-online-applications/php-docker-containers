@@ -26,7 +26,7 @@ jobs:
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-base-build RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-base-build RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
 
@@ -37,6 +37,6 @@ jobs:
     with:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make ${{ inputs.stage }}-base-fpm RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-base-fpm RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

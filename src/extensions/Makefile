@@ -3,7 +3,7 @@ SHELL := /bin/bash
 
 REPO_BASE := $(REPO)-extra
 
-build: ext-amqp ext-bcmath ext-composer ext-curl ext-datadog ext-gd ext-intl ext-mbstring ext-mongodb ext-mysql ext-opcache ext-pcntl ext-redis ext-saxonc ext-xdebug ext-xml ext-zip ext-node
+build: ext-amqp ext-bcmath ext-composer ext-curl ext-datadog ext-gd ext-intl ext-mbstring ext-mongodb ext-mysql ext-nodejs ext-opcache ext-pcntl ext-redis ext-saxonc ext-xdebug ext-xml ext-zip
 	echo "Done building all extensions!"
 
 ext-%:
