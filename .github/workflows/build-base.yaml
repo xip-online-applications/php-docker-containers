@@ -21,7 +21,7 @@ jobs:
     name: "Build container"
     uses: ./.github/workflows/build-wf.yaml
     with:
-      registry: ${{ input.registry }}
+      registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make release-base-build RELEASE=${{ inputs.release }}"
     secrets:
@@ -32,7 +32,7 @@ jobs:
     needs: build
     uses: ./.github/workflows/build-wf.yaml
     with:
-      registry: ${{ input.registry }}
+      registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make release-base-fpm RELEASE=${{ inputs.release }}"
     secrets:
