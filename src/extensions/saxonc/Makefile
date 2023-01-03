@@ -1,14 +1,15 @@
 SHELL := /bin/bash
-.PHONY: all build for-version
+.PHONY: build for-version
 
 REPO_EXT := $(REPO_BASE)-saxonc
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-build:
-	make for-version VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
-#	make for-version VERSION=8.0 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) (NOT SUPPORTED)
-#	make for-version VERSION=8.1 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) (NOT SUPPORTED)
+build: build-7.4
+	echo "Done build."
+
+build-%:
+	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
 
 for-version:
 ifeq ($(VERSION), 7.4)

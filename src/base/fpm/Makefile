@@ -6,17 +6,11 @@ REPO_BUILD := $(REPO_BASE)-build
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-build: for-version-74 for-version-80 for-version-81
+build: for-version-7.4 for-version-8.0 for-version-8.1
 	echo "Done building FPM images."
 
-for-version-74:
-	make for-version VERSION=7.4 RELEASE=$(RELEASE)
-
-for-version-80:
-	make for-version VERSION=8.0 RELEASE=$(RELEASE)
-
-for-version-81:
-	make for-version VERSION=8.1 RELEASE=$(RELEASE)
+for-version-%:
+	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE)
 
 for-version:
 	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform linux/amd64,linux/arm64 --tag $(REPO_BUILD):$(RELEASE_TAG)-fpm --file $(VERSION)/Dockerfile --push .

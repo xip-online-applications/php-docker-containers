@@ -13,21 +13,21 @@ docker-login:
 	echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_USER} --password-stdin
 
 all:
-	make base RELEASE=$(RELEASE) REPO=$(REPO)
-	make extensions RELEASE=$(RELEASE) REPO=$(REPO)
+	$(MAKE) base RELEASE=$(RELEASE) REPO=$(REPO)
+	$(MAKE) extensions RELEASE=$(RELEASE) REPO=$(REPO)
 
 base: # Build the custom extensions
-	cd src/base ; make -j 4 build RELEASE=$(RELEASE) REPO=$(REPO)
+	cd src/base ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
 
 extensions: # Build the custom extensions
-	cd src/extensions ; make -j 4 build RELEASE=$(RELEASE) REPO=$(REPO)
-	cd src/envs ; make -j 4 build RELEASE=$(RELEASE) REPO=$(REPO)
+	cd src/extensions ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
+	cd src/envs ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
 
 release: # Build a release version
-	make all RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) all RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
 
 release-base: # Build a release version for the base containers
-	make base RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) base RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
 
 release-extensions: # Build a release version for the extensions
-	make extensions RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) extensions RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php

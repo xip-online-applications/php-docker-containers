@@ -13,7 +13,7 @@ jobs:
     with:
       registry: ghcr.io
       actor: ${{ github.actor }}
-      command: "make release-base RELEASE=${{ github.ref_name }}"
+      command: "make -j4 release-base RELEASE=${{ github.ref_name }}"
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -23,6 +23,6 @@ jobs:
     with:
       registry: ghcr.io
       actor: ${{ github.actor }}
-      command: "make release-extensions RELEASE=${{ github.ref_name }}"
+      command: "make -j4 release-extensions RELEASE=${{ github.ref_name }}"
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
