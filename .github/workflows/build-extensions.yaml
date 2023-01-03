@@ -33,3 +33,153 @@ jobs:
       actor: ${{ inputs.actor }}
     secrets:
       token: ${{ secrets.token }}
+
+  composer:
+    name: "composer"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: composer
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  curl:
+    name: "curl"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: curl
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  datadog:
+    name: "datadog"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: datadog
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  gd:
+    name: "gd"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: gd
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  intl:
+    name: "intl"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: intl
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  mbstring:
+    name: "mbstring"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: mbstring
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  mongodb:
+    name: "mongodb"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: mongodb
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  mysql:
+    name: "mysql"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: mysql
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  opcache:
+    name: "opcache"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: opcache
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  pcntl:
+    name: "pcntl"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: pcntl
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  redis:
+    name: "redis"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: redis
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  xdebug:
+    name: "xdebug"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: xdebug
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  xml:
+    name: "xml"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: xml
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  zip:
+    name: "zip"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: zip
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
+  node:
+    name: "node"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: node
+      release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
