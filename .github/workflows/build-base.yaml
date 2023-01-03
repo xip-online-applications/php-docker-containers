@@ -6,6 +6,12 @@ on:
       release:
         required: true
         type: string
+      actor:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   build:
@@ -13,6 +19,9 @@ jobs:
     with:
       base: build
       release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
 
   fpm:
     needs: build
@@ -20,3 +29,6 @@ jobs:
     with:
       base: fpm
       release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}

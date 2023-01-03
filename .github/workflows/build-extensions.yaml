@@ -6,6 +6,12 @@ on:
       release:
         required: true
         type: string
+      actor:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   amqp:
@@ -13,9 +19,15 @@ jobs:
     with:
       extension: amqp
       release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
 
   bcmath:
     uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: bcmath
       release: ${{ inputs.release }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}

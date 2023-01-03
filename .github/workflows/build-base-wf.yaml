@@ -9,13 +9,19 @@ on:
       release:
         required: true
         type: string
+      actor:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   base:
     uses: ./.github/workflows/build-wf.yaml
     with:
       registry: ghcr.io
-      actor: ${{ github.actor }}
+      actor: ${{ inputs.actor }}
       command: "make release-base-${{ inputs.base }} RELEASE=${{ inputs.release }}"
     secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      token: ${{ secrets.token }}

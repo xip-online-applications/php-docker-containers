@@ -13,9 +13,15 @@ jobs:
     uses: ./.github/workflows/build-base.yaml
     with:
       release: ${{ github.sha }}
+      actor: ${{ github.actor }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
   extensions:
     needs: base
     uses: ./.github/workflows/build-extensions.yaml
     with:
       release: ${{ github.sha }}
+      actor: ${{ github.actor }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
