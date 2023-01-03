@@ -9,13 +9,13 @@ on:
 
 jobs:
   amqp:
-    uses: ./src/extensions/build-wf.yaml
+    uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: amqp
       release: ${{ inputs.release }}
 
   bcmath:
-    uses: ./src/extensions/build-wf.yaml
+    uses: ./.github/workflows/build-extension-wf.yaml
     with:
       extension: bcmath
       release: ${{ inputs.release }}

@@ -20,6 +20,6 @@ jobs:
 
   extensions:
     needs: base
-    uses: ./src/extensions/build-extensions.yaml
+    uses: ./.github/workflows/build-extensions.yaml
     with:
       release: ${{ github.sha }}
