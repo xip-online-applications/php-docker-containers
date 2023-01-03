@@ -1,0 +1,21 @@
+name: Create and publish extension container reusable workflow.
+
+on:
+  workflow_call:
+    inputs:
+      extension:
+        required: true
+        type: string
+      release:
+        required: true
+        type: string
+
+jobs:
+  extensions:
+    uses: ./.github/workflows/build-wf.yaml
+    with:
+      registry: ghcr.io
+      actor: ${{ github.actor }}
+      command: "make release-extension-${{ input.extension }} RELEASE=${{ inputs.release }}"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

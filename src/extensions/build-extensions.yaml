@@ -1,0 +1,21 @@
+name: Create and publish extension containers.
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        required: true
+        type: string
+
+jobs:
+  amqp:
+    uses: ./src/extensions/build-wf.yaml
+    with:
+      extension: amqp
+      release: ${{ inputs.release }}
+
+  bcmath:
+    uses: ./src/extensions/build-wf.yaml
+    with:
+      extension: bcmath
+      release: ${{ inputs.release }}

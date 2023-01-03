@@ -2,7 +2,8 @@ SHELL := /bin/bash
 .PHONY: prepare docker-login all base extensions release
 
 RELEASE ?= "x-latest"
-REPO ?= ghcr.io/xip-online-applications/php-docker-containers/php-dev
+PROD_REPO ?= ghcr.io/xip-online-applications/php-docker-containers/php
+REPO ?= $(PROD_REPO)-dev
 
 prepare:
 	sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
@@ -24,10 +25,16 @@ extensions: # Build the custom extensions
 	cd src/envs ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO)
 
 release: # Build a release version
-	$(MAKE) all RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) all RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
 release-base: # Build a release version for the base containers
-	$(MAKE) base RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) base RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
 release-extensions: # Build a release version for the extensions
-	$(MAKE) extensions RELEASE=$(RELEASE) REPO=ghcr.io/xip-online-applications/php-docker-containers/php
+	$(MAKE) extensions RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
+release-extension-%: # Build a release version for a specific extension
+	cd src/extensions ; $(MAKE) ext-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
+release-env-%: # Build a release version for a specific environment
+	cd src/envs ; $(MAKE) env-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)

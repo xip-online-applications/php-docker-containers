@@ -20,10 +20,6 @@ jobs:
 
   extensions:
     needs: base
-    uses: ./.github/workflows/build-wf.yaml
+    uses: ./src/extensions/build-extensions.yaml
     with:
-      registry: ghcr.io
-      actor: ${{ github.actor }}
-      command: "make -j4 extensions RELEASE=${{ github.sha }}"
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      release: ${{ github.sha }}
