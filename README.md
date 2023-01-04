@@ -67,3 +67,4 @@ To develop a new extension, you need to make sure you do the following:
 * Add the extension to the [`src/extensions](./src/extensions/) directory (like the others)
 * Make sure your extension image is based on `scratch` with a copyable `/opt` directory
 * The build of your extension is added to [`.github/workflows/build-extensions.yaml`](./.github/workflows/build-extensions.yaml)
+* Add the extension to the `README.md` file at section `Available extensions`
