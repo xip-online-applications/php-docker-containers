@@ -1,13 +1,27 @@
-FROM xiponlineapplications/php-extra-composer:8.1 as composer
-FROM xiponlineapplications/php-extra-mysql:8.1 as mysql
-FROM xiponlineapplications/php-extra-redis:8.1 as redis
-FROM xiponlineapplications/php-extra-xdebug:8.1 as xdebug
+## This example Dockerfile contains a multi-stage build proces for usage in
+## both development and production environments.
 
-FROM xiponlineapplications/php:8.1-fpm
+# Base is the PHP-FPM version 8.1 image
+FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.1-fpm AS development
 
-EXPOSE 9003
+# Add the MySQL and Redis extensions
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.1 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis:8.1 /opt /opt
 
-COPY --from=composer /opt /opt
-COPY --from=mysql /opt /opt
-COPY --from=redis /opt /opt
-COPY --from=xdebug /opt /opt
+# Require Composer
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer:8.1 /opt /opt
+
+# Add development settings
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-dev:8.1 /opt /opt
+
+#########
+# Production image part
+##
+
+# Begin with extending the development (above) image
+FROM development AS production
+
+# Undo development settings
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-prod:8.1 /opt /opt
+
+# ... perform install steps and so on for your application like `COPY ./ ./`, etc.
