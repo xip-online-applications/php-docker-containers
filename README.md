@@ -1,4 +1,5 @@
 [![Build status](https://github.com/xip-online-applications/php-docker-containers/actions/workflows/main.yaml/badge.svg)](https://github.com/xip-online-applications/php-docker-containers/actions/workflows/main.yaml)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=547907048)
 
 # Reusable PHP Docker containers
 It is a lot of work to build PHP containers over and over again, let alone the wait for containers to build. This project makes that life easier by providing fully reusable PHP base containers and extensions.
