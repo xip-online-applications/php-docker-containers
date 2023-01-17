@@ -6,7 +6,7 @@ REPO_BUILD := $(REPO_BASE)-build
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-build: for-version-7.4 for-version-8.0 for-version-8.1
+build: for-version-7.4 for-version-8.0 for-version-8.1 for-version-8.2
 	echo "Done building FPM images."
 
 for-version-%:

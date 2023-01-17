@@ -5,7 +5,7 @@ REPO_EXT := $(REPO_BASE)-curl
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-build: build-7.4 build-8.0 build-8.1
+build: build-7.4 build-8.0 build-8.1 build-8.2
 	echo "Done build."
 
 build-%:
