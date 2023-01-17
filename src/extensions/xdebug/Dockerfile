@@ -6,7 +6,7 @@ FROM ${REPO}:${PHP_VERSION} as ext
 RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
     pecl install xdebug; \
   else \
-    pecl install xdebug-2.9.8; \
+    pecl install xdebug-3.1.5; \
   fi
 
 COPY ext-xdebug.ini /tmp/ext-xdebug.ini
