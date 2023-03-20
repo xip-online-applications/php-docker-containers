@@ -225,3 +225,15 @@ jobs:
       actor: ${{ inputs.actor }}
     secrets:
       token: ${{ secrets.token }}
+
+  supervisor:
+    name: "supervisor"
+    needs: python
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: supervisor
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}

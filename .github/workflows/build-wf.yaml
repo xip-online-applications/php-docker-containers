@@ -18,6 +18,7 @@ on:
 
 jobs:
   container:
+    name: build container
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
