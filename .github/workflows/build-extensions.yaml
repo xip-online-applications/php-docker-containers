@@ -214,3 +214,14 @@ jobs:
       actor: ${{ inputs.actor }}
     secrets:
       token: ${{ secrets.token }}
+
+  python:
+    name: "python"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: python
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
