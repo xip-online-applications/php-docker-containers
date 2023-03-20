@@ -63,6 +63,12 @@ There are also some environment specific extensions available:
 | prod      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-prod | Will undo dev extension settings                      |
 
 ## Development
+First you need to prepare your local environment by preparing buildx:
+
+```shell
+docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
+```
+
 To develop a new extension, you need to make sure you do the following:
 
 * Add the extension to the [`src/extensions](./src/extensions/) directory (like the others)
