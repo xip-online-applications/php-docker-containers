@@ -69,6 +69,12 @@ First you need to prepare your local environment by preparing buildx:
 docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
 ```
 
+Also authorize to the Github registry with your Github PAT:
+
+```shell
+echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+```
+
 To develop a new extension, you need to make sure you do the following:
 
 * Add the extension to the [`src/extensions](./src/extensions/) directory (like the others)
