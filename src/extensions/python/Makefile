@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .PHONY: build for-version
 
-REPO_EXT := $(REPO_BASE)-python3
+REPO_EXT := $(REPO_BASE)-python
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
