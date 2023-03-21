@@ -204,6 +204,17 @@ jobs:
     secrets:
       token: ${{ secrets.token }}
 
+  xsl:
+    name: "xsl"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: xsl
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
   zip:
     name: "zip"
     uses: ./.github/workflows/build-extension-wf.yaml
