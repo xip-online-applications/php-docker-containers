@@ -28,7 +28,7 @@ RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib \
 RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/lib64
 RUN cp "$(php-config --extension-dir)/saxon.so" /tmp/extensions/saxonc.so
 RUN echo "extension=/opt/php/extensions/saxonc.so" >> /tmp/conf.d/ext-saxonc.ini
-RUN cp /usr/lib/libsaxon-* /tmp/lib64/libsaxonhec.so
+RUN cp /usr/lib/libsaxon-* /tmp/lib64/.
 
 # The definitive build
 FROM scratch
