@@ -2,25 +2,24 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} as ext
 
-ARG LIBSAXON_VERSION=1.1.2
+ARG LIBSAXON_VERSION=11.5
 ARG LIBSAXON_ARCHITECTURE=64
 ARG LIBSAXON_DOWNLOAD_FILE_NAME=libsaxon-HEC-setup$LIBSAXON_ARCHITECTURE-v$LIBSAXON_VERSION
 
 ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
-RUN curl --insecure -sS -o /libsaxon-setup.zip https://www.saxonica.com/saxon-c/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
+RUN curl --insecure -sS -o /libsaxon-setup.zip https://www.saxonica.com/download/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
     && unzip /libsaxon-setup.zip
 
-# Prepare saxon installation
-COPY install-libsaxon-setup.sh /install-libsaxon-setup.sh
-RUN chmod u+x /install-libsaxon-setup.sh \
-    && . /install-libsaxon-setup.sh \
-    && cp /Saxon-HEC$LIBSAXON_VERSION/libsaxonhec.so /usr/lib/ \
-    && cp -r /Saxon-HEC$LIBSAXON_VERSION/rt /usr/lib/rt
+# Copy required files
+RUN cd /libsaxon-HEC-${LIBSAXON_VERSION} \
+    && cp libsaxonhec.so /usr/lib/. \
+    && cp -r rt /usr/lib/. \
+    && cp -r saxon-data /usr/lib/.
 
-# Build saxon
-RUN cd /Saxon-HEC$LIBSAXON_VERSION/Saxon.C.API \
+# Build Saxon
+RUN cd libsaxon-HEC-${LIBSAXON_VERSION}/Saxon.C.API \
     && phpize \
     && ./configure --enable-saxon \
     && make -j$(nproc) \
@@ -32,6 +31,7 @@ RUN cp "$(php-config --extension-dir)/saxon.so" /tmp/extensions/saxonc.so
 RUN echo "extension=/opt/php/extensions/saxonc.so" >> /tmp/conf.d/ext-saxonc.ini
 RUN cp /usr/lib/libsaxonhec.so /tmp/lib64/libsaxonhec.so
 RUN cp -r /usr/lib/rt /tmp/lib64/rt
+RUN cp -r /usr/lib/saxon-data /tmp/lib64/saxon-data
 
 # The definitive build
 FROM scratch

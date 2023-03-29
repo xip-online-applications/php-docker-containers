@@ -2,17 +2,25 @@ SHELL := /bin/bash
 .PHONY: build for-version
 
 REPO_EXT := $(REPO_BASE)-saxonc
-RELEASE_TAG := $(VERSION).$(RELEASE)
-RELEASE_TAG_SHORT := $(VERSION)
+PHP_VERSION := $(VERSION)
+RELEASE_TAG := $(VERSION)-$(SAXON_VERSION).$(RELEASE)
+RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 
-build: build-7.4
+build: build-php-7.4 build-php-8.0 build-php-8.1 build-php-8.2
 	echo "Done build."
 
-build-%:
-	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+build-php-7.4:
+	$(MAKE) for-version SAXON_VERSION=1.1 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
+	$(MAKE) for-version SAXON_VERSION=1.2 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
+	$(MAKE) for-version SAXON_VERSION=11 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
+
+build-php-8.0:
+	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.0 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
+build-php-8.1:
+	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.1 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
+build-php-8.2:
+	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.2 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 
 for-version:
-ifeq ($(VERSION), 7.4)
-	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform linux/amd64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(RELEASE_TAG) --push .
+	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform $(PLATFORM) --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --file $(SAXON_VERSION).Dockerfile --push .
 	docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG)
-endif
