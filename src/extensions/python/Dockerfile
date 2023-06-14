@@ -5,7 +5,8 @@ RUN apt update \
 
 RUN mkdir -p /opt/share/python /opt/bin
 
-ARG VERSION=3.11.2
+# https://www.python.org/downloads/
+ARG VERSION=3.11.4
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
     && tar -xzf python.tgz \
     && cd Python-$VERSION \

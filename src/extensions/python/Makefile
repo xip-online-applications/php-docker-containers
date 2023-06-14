@@ -7,7 +7,7 @@ RELEASE_TAG_SHORT := $(VERSION)
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
 
-build: build-3.11.2
+build: build-3.11.4
 	echo "Done build."
 
 build-%:
