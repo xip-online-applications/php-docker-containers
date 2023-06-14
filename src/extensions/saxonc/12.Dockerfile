@@ -3,8 +3,10 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} as ext
 
 ARG LIBSAXON_VERSION=12.2
-ARG LIBSAXON_ARCHITECTURE=linux-x86_64
-ARG LIBSAXON_DOWNLOAD_FILE_NAME=libsaxon-HEC-$LIBSAXON_ARCHITECTURE-v$LIBSAXON_VERSION
+ARG LIBSAXON_ARCHITECTURE=linux
+ARG LIBSAXON_ARCHITECTURE_DOWNLOAD=$LIBSAXON_ARCHITECTURE-x86_64
+ARG LIBSAXON_DOWNLOAD_FILE_NAME=libsaxon-HEC-$LIBSAXON_ARCHITECTURE_DOWNLOAD-v$LIBSAXON_VERSION
+ARG LIBSAXON_UNZIPPED_FILE_NAME=libsaxon-HEC-$LIBSAXON_ARCHITECTURE-v$LIBSAXON_VERSION
 
 ENV SAXONC_HOME=/opt/php/lib64
 
@@ -13,12 +15,12 @@ RUN curl --insecure -sS -o /libsaxon-setup.zip https://www.saxonica.com/download
     && unzip /libsaxon-setup.zip
 
 # Copy required files
-RUN cd /$LIBSAXON_DOWNLOAD_FILE_NAME \
+RUN cd /$LIBSAXON_UNZIPPED_FILE_NAME \
     && cp libs/nix/* /usr/lib/.
 
 # Build Saxon
 RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib \
-    && cd /$LIBSAXON_DOWNLOAD_FILE_NAME/Saxon.C.API \
+    && cd /$LIBSAXON_UNZIPPED_FILE_NAME/Saxon.C.API \
     && phpize \
     && ./configure --enable-saxon \
     && make -j$(nproc) \
