@@ -1,16 +1,11 @@
-include ../common.Makefile
-
 PHP_VERSION := 8.2
 REPO_PYTHON := $(REPO_BASE)-python
 REPO_EXT := $(REPO_PYTHON)-supervisor
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
+BUILD_PREREQS := build-3.11.4
 
-build: build-3.11.2
-	echo "Done build."
-
-build-%:
-	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+include ../common.Makefile
 
 for-version:
 	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform linux/amd64,linux/arm64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg REPO_PYTHON=$(REPO_PYTHON):$(VERSION)  --push .

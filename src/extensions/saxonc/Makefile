@@ -1,25 +1,22 @@
-include ../common.Makefile
-
 PHP_VERSION := $(VERSION)
 RELEASE_TAG := $(VERSION)-$(SAXON_VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 
-build: build-php-7.4 build-php-8.0 build-php-8.1 build-php-8.2
+include ../common.Makefile
+
+build: build-7.4 build-8.0 build-8.1 build-8.2
 	echo "Done build."
 
-build-%:
-	$(MAKE) build-php-$*
-
-build-php-7.4:
+build-7.4:
 	$(MAKE) for-version SAXON_VERSION=1.1 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 	$(MAKE) for-version SAXON_VERSION=1.2 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 	$(MAKE) for-version SAXON_VERSION=11 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 
-build-php-8.0:
+build-8.0:
 	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.0 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
-build-php-8.1:
+build-8.1:
 	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.1 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
-build-php-8.2:
+build-8.2:
 	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.2 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 
 for-version:

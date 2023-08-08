@@ -1,13 +1,8 @@
-include ../common.Makefile
-
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
+BUILD_PREREQS := build-3.11.4
 
-build: build-3.11.4
-	echo "Done build."
-
-build-%:
-	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE) REPO_BASE=$(REPO_BASE)
+include ../common.Makefile
 
 for-version:
 	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform linux/amd64,linux/arm64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg VERSION=$(VERSION) --push .
