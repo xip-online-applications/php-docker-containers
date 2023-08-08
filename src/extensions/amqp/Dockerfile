@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y librabbitmq-dev
 
 # Install AMQP
 RUN docker-php-source extract \
-    && git clone --branch master --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
+    && git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
     && cd /usr/src/php/ext/amqp \
     && git submodule update --init \
     && docker-php-ext-install amqp

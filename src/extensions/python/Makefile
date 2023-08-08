@@ -1,9 +1,5 @@
-SHELL := /bin/bash
-.PHONY: build for-version
+include ../common.Makefile
 
-REPO_EXT := $(REPO_BASE)-python
-RELEASE_TAG := $(VERSION).$(RELEASE)
-RELEASE_TAG_SHORT := $(VERSION)
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
 

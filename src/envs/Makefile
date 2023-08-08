@@ -1,7 +1,6 @@
-SHELL := /bin/bash
-.PHONY: build for-version
+include $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))/../../common.Makefile
 
-REPO_BASE := $(REPO)-extra
+.PHONY: build for-version
 
 build: env-dev env-prod
 	echo "Done building environments."

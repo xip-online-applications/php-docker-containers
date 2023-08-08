@@ -1,12 +1,8 @@
-SHELL := /bin/bash
+include common.Makefile
 .PHONY: prepare docker-login all base extensions release
 
-RELEASE ?= "x-latest"
-PROD_REPO ?= ghcr.io/xip-online-applications/php-docker-containers/php
-REPO ?= $(PROD_REPO)-dev
-
 prepare:
-	sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
+	#sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker buildx create --platform "linux/amd64,linux/arm64" --use
 

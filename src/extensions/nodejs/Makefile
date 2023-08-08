@@ -1,9 +1,4 @@
-SHELL := /bin/bash
-.PHONY: build for-version
-
-REPO_EXT := $(REPO_BASE)-nodejs
-RELEASE_TAG := $(VERSION).$(RELEASE)
-RELEASE_TAG_SHORT := $(VERSION)
+include ../common.Makefile
 
 build: build-14 build-16 build-18 build-19
 	echo "Done build."

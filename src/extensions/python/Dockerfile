@@ -8,14 +8,14 @@ RUN mkdir -p /opt/share/python /opt/bin
 # https://www.python.org/downloads/
 ARG VERSION=3.11.4
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
-    && tar -xzf python.tgz \
-    && cd Python-$VERSION \
-    && ./configure --enable-optimizations --prefix=/opt/share/python \
+    && tar -xzf python.tgz
+
+RUN cd Python-$VERSION \
+    && ./configure --enable-optimizations --prefix=/opt/share/python --exec-prefix=/opt \
     && make -j$(nproc) \
     && make install
 
-RUN ln -s /opt/share/python/bin/python3 /opt/bin/python3 \
-    && ln -s /opt/share/python/bin/pip3 /opt/bin/pip3 \
+RUN ln -s /opt/share/python/bin/pip3 /opt/bin/pip3 \
     && ln -s python3 /opt/bin/python \
     && ln -s pip3 /opt/bin/pip
 

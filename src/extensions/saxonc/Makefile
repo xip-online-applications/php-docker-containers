@@ -1,7 +1,5 @@
-SHELL := /bin/bash
-.PHONY: build for-version
+include ../common.Makefile
 
-REPO_EXT := $(REPO_BASE)-saxonc
 PHP_VERSION := $(VERSION)
 RELEASE_TAG := $(VERSION)-$(SAXON_VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)

@@ -1,11 +1,8 @@
-SHELL := /bin/bash
-.PHONY: build for-version
+include ../common.Makefile
 
 PHP_VERSION := 8.2
 REPO_PYTHON := $(REPO_BASE)-python
 REPO_EXT := $(REPO_PYTHON)-supervisor
-RELEASE_TAG := $(VERSION).$(RELEASE)
-RELEASE_TAG_SHORT := $(VERSION)
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
 
