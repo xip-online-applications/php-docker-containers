@@ -13,15 +13,15 @@ ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
 RUN curl --insecure -sS -o /libsaxon-setup.zip https://www.saxonica.com/download/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
-    && unzip /libsaxon-setup.zip
+    && unzip /libsaxon-setup.zip -d /$LIBSAXON_UNZIPPED_FILE_NAME
 
 # Copy required files
-RUN cd /$LIBSAXON_UNZIPPED_FILE_NAME \
+RUN cd /$LIBSAXON_UNZIPPED_FILE_NAME/* \
     && cp libs/nix/* /usr/lib/.
 
 # Build Saxon
 RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib \
-    && cd /$LIBSAXON_UNZIPPED_FILE_NAME/Saxon.C.API \
+    && cd /$LIBSAXON_UNZIPPED_FILE_NAME/*/Saxon.C.API \
     && phpize \
     && ./configure --enable-saxon \
     && make -j$(nproc) \

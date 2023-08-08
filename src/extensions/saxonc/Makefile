@@ -7,6 +7,9 @@ RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 build: build-php-7.4 build-php-8.0 build-php-8.1 build-php-8.2
 	echo "Done build."
 
+build-%:
+	$(MAKE) build-php-$*
+
 build-php-7.4:
 	$(MAKE) for-version SAXON_VERSION=1.1 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
 	$(MAKE) for-version SAXON_VERSION=1.2 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
