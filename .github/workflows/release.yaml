@@ -12,7 +12,7 @@ jobs:
   base:
     uses: ./.github/workflows/build-base.yaml
     with:
-      release: ${{ github.ref_name }}
+      release: ${{ github.event.release.tag_name }}
       actor: ${{ github.actor }}
       stage: release
     secrets:
@@ -22,7 +22,7 @@ jobs:
     needs: base
     uses: ./.github/workflows/build-extensions.yaml
     with:
-      release: ${{ github.ref_name }}
+      release: ${{ github.event.release.tag_name }}
       actor: ${{ github.actor }}
       stage: release
     secrets:
@@ -32,7 +32,7 @@ jobs:
     needs: extensions
     uses: ./.github/workflows/build-environments.yaml
     with:
-      release: ${{ github.ref_name }}
+      release: ${{ github.event.release.tag_name }}
       actor: ${{ github.actor }}
       stage: release
     secrets:
