@@ -6,7 +6,7 @@ RUN apt update \
 RUN mkdir -p /opt/share/python /opt/bin
 
 # https://www.openssl.org/source/
-ARG OPENSSL_VERSION=1.1.1v
+ARG OPENSSL_VERSION=3.1.2
 RUN curl -sS -o openssl.tar.gz "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" \
     && tar -xzf openssl.tar.gz
 
