@@ -1,4 +1,4 @@
-FROM debian as ext
+FROM debian:bullseye as ext
 
 RUN apt update \
     && apt install -y curl tar wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
@@ -25,8 +25,8 @@ RUN cd Python-$VERSION \
     && echo "_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a" >> Modules/Setup
 
 RUN cd Python-$VERSION \
-    && export LDFLAGS="-L/opt/share/lib/" \
-    && export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:-L/opt/share/lib/" \
+    && export LDFLAGS="-L/opt/share/lib/ -L/opt/share/lib64/" \
+    && export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:-L/opt/share/lib/:-L/opt/share/lib64/" \
     && export CPPFLAGS="-I/opt/share/include -I/opt/share/include/openssl" \
     && ./configure --enable-optimizations --with-lto --with-ssl --prefix=/opt/share \
     && make -j$(nproc) \
