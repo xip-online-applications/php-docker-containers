@@ -182,6 +182,17 @@ jobs:
     secrets:
       token: ${{ secrets.token }}
 
+  sockets:
+    name: "sockets"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: sockets
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
   xdebug:
     name: "xdebug"
     uses: ./.github/workflows/build-extension-wf.yaml
