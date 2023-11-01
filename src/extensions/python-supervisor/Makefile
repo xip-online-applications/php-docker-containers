@@ -3,7 +3,7 @@ REPO_PYTHON := $(REPO_BASE)-python
 REPO_EXT := $(REPO_PYTHON)-supervisor
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
-BUILD_PREREQS := build-3.11.4
+BUILD_PREREQS := build-3.11.6 build-3.12.0
 
 include ../common.Makefile
 
