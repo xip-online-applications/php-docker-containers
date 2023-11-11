@@ -9,7 +9,7 @@ ARG LIBSAXON_DOWNLOAD_FILE_NAME=libsaxon-HEC-setup$LIBSAXON_ARCHITECTURE-v$LIBSA
 ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
-RUN curl --insecure -sS -o /libsaxon-setup.zip https://www.saxonica.com/saxon-c/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
+RUN curl --insecure -LsS -o /libsaxon-setup.zip https://www.saxonica.com/saxon-c/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
     && unzip /libsaxon-setup.zip \
     && rm /libsaxon-setup.zip
 
