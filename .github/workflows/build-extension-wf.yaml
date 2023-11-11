@@ -23,6 +23,7 @@ jobs:
   extensions:
     uses: ./.github/workflows/build-wf.yaml
     with:
+      name: ${{ inputs.extension }}
       registry: ghcr.io
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-extension-${{ inputs.extension }} RELEASE=${{ inputs.release }}"

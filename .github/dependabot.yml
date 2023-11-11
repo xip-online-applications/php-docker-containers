@@ -1,45 +1,68 @@
 version: 2
 updates:
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  # Docker - /src/base/build
   - package-ecosystem: "docker"
     directory: "/src/base/build/7.4"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major","version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.0"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major","version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.1"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major","version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
+  - package-ecosystem: "docker"
+    directory: "/src/base/build/8.2"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major" ]
 
+  # Docker - /src/base/fpm
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/7.4"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major","version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.0"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major","version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.1"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "php"
-        update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
+        update-types: [ "version-update:semver-major" ]
+  - package-ecosystem: "docker"
+    directory: "/src/base/fpm/8.2"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major" ]

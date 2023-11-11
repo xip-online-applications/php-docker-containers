@@ -24,6 +24,7 @@ jobs:
     name: "dev"
     uses: ./.github/workflows/build-wf.yaml
     with:
+      name: 'dev'
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
@@ -34,6 +35,7 @@ jobs:
     name: "prod"
     uses: ./.github/workflows/build-wf.yaml
     with:
+      name: 'prod'
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-env-prod RELEASE=${{ inputs.release }}"
