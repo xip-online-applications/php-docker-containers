@@ -24,16 +24,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Expose GitHub Runtime
+        uses: crazy-max/ghaction-github-runtime@v3
+
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
           registry: ${{ inputs.registry }}
           username: ${{ inputs.actor }}
           password: ${{ secrets.token }}
-      
-      - name: Docker layer caching
-        uses: satackey/action-docker-layer-caching@v0.0.11
-        continue-on-error: true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
