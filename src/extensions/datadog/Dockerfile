@@ -1,9 +1,9 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://github.com/DataDog/dd-trace-php/releases
-ARG DATADOG_TRACING_VERSION="0.93.1"
+ARG DATADOG_TRACING_VERSION="0.92.2"
 
 # Download and install
 RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php" --output /tmp/datadog-setup.php \
