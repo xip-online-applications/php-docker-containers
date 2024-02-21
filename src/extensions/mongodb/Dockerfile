@@ -4,8 +4,7 @@ FROM ${REPO}:${PHP_VERSION} as ext
 
 RUN apt-get update && apt-get install -y libssl-dev
 
-ENV PHP_MONGODB_DEVELOPER_FLAGS="yes"
-RUN yes | pecl install mongodb
+RUN yes '' | pecl install mongodb
 RUN docker-php-ext-enable mongodb
 
 RUN mkdir -p /tmp/extensions && mkdir -p /tmp/conf.d
