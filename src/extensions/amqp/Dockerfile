@@ -1,6 +1,6 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y librabbitmq-dev
 
