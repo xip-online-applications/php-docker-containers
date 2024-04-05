@@ -160,6 +160,17 @@ jobs:
     secrets:
       token: ${{ secrets.token }}
 
+  rdkafka:
+    name: "rdkafka"
+    uses: ./.github/workflows/build-extension-wf.yaml
+    with:
+      extension: rdkafka
+      release: ${{ inputs.release }}
+      stage: ${{ inputs.stage }}
+      actor: ${{ inputs.actor }}
+    secrets:
+      token: ${{ secrets.token }}
+
   redis:
     name: "redis"
     uses: ./.github/workflows/build-extension-wf.yaml
