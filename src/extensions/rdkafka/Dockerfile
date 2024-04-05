@@ -22,6 +22,12 @@ RUN mv `php-config --extension-dir`/rdkafka.so /tmp/extensions/rdkafka.so
 
 COPY ext-rdkafka.ini /tmp/conf.d/ext-rdkafka.ini
 
+USER root
+RUN rm -rf /tmp/librdkafka/*
+RUN mkdir -p /tmp/lib64 \
+    && cp `find / -name librdkafka.so.1` /tmp/lib64/
+
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/
 COPY --from=ext /tmp/conf.d /opt/php/conf.d/
+COPY --from=ext /tmp/lib64 /opt/php/lib64/
