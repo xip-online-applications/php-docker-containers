@@ -3,25 +3,28 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://github.com/DataDog/dd-trace-php/releases
-ARG DATADOG_TRACING_VERSION="0.98.1"
+ARG DATADOG_TRACING_VERSION="0.99.1"
 
 # Download and install
 RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php" --output /tmp/datadog-setup.php \
-    && php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/
+    && php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling
 
 # Copy all files
 RUN mkdir -p /opt/extension && mkdir -p /opt/conf.d
-RUN cp "$(php-config --extension-dir)/ddtrace.so" /opt/extension/ddtrace.so | true \
-    && test -f /opt/extension/ddtrace.so
-RUN cp "$(php-config --extension-dir)/ddappsec.so" /opt/extension/ddappsec.so | true
-RUN cp "$(php-config --extension-dir)/datadog-profiling.so" /opt/extension/datadog-profiling.so | true
-RUN cp "/usr/local/etc/php/conf.d:/opt/php/conf.d/98-ddtrace.ini" /opt/conf.d/ext-datadog.ini | true \
-    && cp "/usr/local/etc/php/conf.d/98-ddtrace.ini" /opt/conf.d/ext-datadog.ini | true \
-    && cp "/opt/php/conf.d/98-ddtrace.ini" /opt/conf.d/ext-datadog.ini | true \
-    && test -f /opt/conf.d/ext-datadog.ini
+WORKDIR /opt/extension
+RUN cp "$(php-config --extension-dir)/ddtrace.so" ./ | true && test -f ./ddtrace.so
+RUN cp "$(php-config --extension-dir)/ddappsec.so" ./ | true
+RUN cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true
+
+WORKDIR /opt/conf.d
+RUN cp "/usr/local/etc/php/conf.d:/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
+    && cp "/usr/local/etc/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
+    && cp "/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
+    && test -f ext-datadog.ini
 
 # Fix the datadog ini file
-RUN sed -i 's|extension = |extension = /opt/php/extensions/|g' /opt/conf.d/ext-datadog.ini
+RUN sed -i 's|extension = |extension = /opt/php/extensions/|g' ext-datadog.ini \
+    && sed -i 's|datadog.profiling.enabled = 1|datadog.profiling.enabled = 0|g' ext-datadog.ini
 
 # The definitive build
 FROM scratch
