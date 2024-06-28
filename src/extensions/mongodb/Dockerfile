@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y libssl-dev
+RUN apt-get update && apt-get install -y libssl-dev \
+  && apt-get clean
 
 RUN yes '' | pecl install mongodb
 RUN docker-php-ext-enable mongodb

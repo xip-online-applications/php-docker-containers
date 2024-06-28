@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} as ext
 
-RUN apt-get update && apt-get install -y libzip-dev
+RUN apt-get update && apt-get install -y libzip-dev \
+  && apt-get clean
 
 RUN docker-php-ext-install zip
 

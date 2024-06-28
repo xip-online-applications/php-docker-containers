@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y libonig-dev
+RUN apt-get update && apt-get install -y libonig-dev \
+  && apt-get clean
 
 RUN docker-php-ext-install mbstring
 

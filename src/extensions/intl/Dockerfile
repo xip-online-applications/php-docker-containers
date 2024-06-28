@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y libicu-dev
+RUN apt-get update && apt-get install -y libicu-dev \
+  && apt-get clean
 
 RUN docker-php-ext-configure intl \
 	&& docker-php-ext-install intl

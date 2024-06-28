@@ -3,7 +3,8 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update \
-    && apt-get install -y build-essential git libsasl2-dev libssl-dev zlib1g-dev
+    && apt-get install -y build-essential git libsasl2-dev libssl-dev zlib1g-dev \
+    && apt-get clean
 
 WORKDIR /tmp
 # https://github.com/confluentinc/librdkafka/releases

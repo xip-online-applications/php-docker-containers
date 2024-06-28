@@ -1,6 +1,6 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://pecl.php.net/package/xdebug
 RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \

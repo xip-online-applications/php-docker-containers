@@ -2,9 +2,9 @@ ARG REPO
 ARG PHP_VERSION
 ARG REPO_PYTHON
 
-FROM $REPO_PYTHON as base
+FROM $REPO_PYTHON AS base
 
-FROM debian:bullseye as ext
+FROM debian:bullseye AS ext
 
 COPY --from=base /opt /opt
 

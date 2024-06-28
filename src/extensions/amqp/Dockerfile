@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y librabbitmq-dev
+RUN apt-get update && apt-get install -y librabbitmq-dev \
+  && apt-get clean
 
 # Install AMQP
 RUN docker-php-source extract \

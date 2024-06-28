@@ -3,7 +3,8 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y \
-    libpng-dev libgmp-dev
+    libpng-dev libgmp-dev \
+    && apt-get clean
 
 RUN docker-php-ext-configure gmp
 RUN docker-php-ext-install gmp

@@ -1,6 +1,6 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN docker-php-ext-install sockets
 
