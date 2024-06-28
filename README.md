@@ -51,6 +51,7 @@ See the list of available extensions below:
 | nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on node versions: 14, 16, 18 and 19 |
 | opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                      |
 | pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                      |
+| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                      |
 | redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                      |
 | saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   | Only for PHP version 7.4                             |
 | xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   |                                                      |
