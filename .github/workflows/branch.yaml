@@ -1,0 +1,25 @@
+name: Build the latest containes.
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+    tags-ignore:
+      - '*'
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  base:
+    uses: ./.github/workflows/build-base.yaml
+    with:
+      release: ${{ github.sha }}
+      actor: ${{ github.actor }}
+      stage: dev
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
