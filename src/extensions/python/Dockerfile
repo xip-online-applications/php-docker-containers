@@ -1,7 +1,8 @@
 FROM debian:bullseye as ext
 
 RUN apt update \
-    && apt install -y curl tar wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
+    && apt install -y curl tar wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev \
+    && apt-get clean
 
 RUN mkdir -p /opt/share/python /opt/bin
 

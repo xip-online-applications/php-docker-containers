@@ -1,8 +1,9 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y libxslt1-dev
+RUN apt-get update && apt-get install -y libxslt1-dev \
+  && apt-get clean
 
 RUN docker-php-ext-configure xsl \
     && docker-php-ext-install xsl

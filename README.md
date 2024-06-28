@@ -1,12 +1,14 @@
+# Reusable PHP Docker containers
+
 [![Build status](https://github.com/xip-online-applications/php-docker-containers/actions/workflows/main.yaml/badge.svg)](https://github.com/xip-online-applications/php-docker-containers/actions/workflows/main.yaml)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=547907048)
 
-# Reusable PHP Docker containers
 It is a lot of work to build PHP containers over and over again, let alone the wait for containers to build. This project makes that life easier by providing fully reusable PHP base containers and extensions.
 
 The main idea behind this project is based on the [Bref](https://github.com/brefphp/bref) development containers. This project provides a base [PHP or PHP-FPM container](https://github.com/xip-online-applications/php-docker-containers/pkgs/container/php-docker-containers%2Fphp) and many prebuild extensions. All you have to do, is combine them into your own project.
 
 ## How to use
+
 Using this project is fairly easy. You start your Dockerfile with the base container. The base containers life in registry `ghcr.io/xip-online-applications/php-docker-containers/php` and are versions like this: `<PHP VERSION>[.<CONTAINER RELEASE VERSION>][-fpm]`. Example for PHP-FPM version 8:
 
 ```Dockerfile
@@ -31,6 +33,7 @@ To undo these dev settings, you can use the `ghcr.io/xip-online-applications/php
 Check the [example](./example) directory for a fully working example of the above within a multi-stage build.
 
 ## Available extensions
+
 See the list of available extensions below:
 
 | Extension | Container                                                                | Notes                                                |
@@ -63,6 +66,7 @@ There are also some environment specific extensions available:
 | prod      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-prod | Will undo dev extension settings                      |
 
 ## Development
+
 First you need to prepare your local environment by preparing buildx:
 
 ```shell

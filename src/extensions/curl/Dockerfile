@@ -2,7 +2,8 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN apt-get update && apt-get install -y libcurl3-dev libcurl4-openssl-dev
+RUN apt-get update && apt-get install -y libcurl3-dev libcurl4-openssl-dev \
+  && apt-get clean
 
 RUN docker-php-ext-install curl
 
