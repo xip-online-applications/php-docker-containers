@@ -41,32 +41,32 @@ updates:
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/7.4"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
-        versions: ["> 7.4"]
+        versions: [">=7.5", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.0"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
-        versions: ["> 8.0"]
+        versions: [">=8.1", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.1"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
-        versions: ["> 8.1"]
+        versions: [">=8.2", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/fpm/8.2"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
-        versions: ["> 8.2"]
+        versions: [">=8.3", "<99.0"]
