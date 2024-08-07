@@ -15,6 +15,7 @@ updates:
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
+        versions: [">=7.5", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.0"
     schedule:
@@ -22,6 +23,7 @@ updates:
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
+        versions: [">=8.1", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.1"
     schedule:
@@ -29,6 +31,7 @@ updates:
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
+        versions: [">=8.2", "<99.0"]
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.2"
     schedule:
@@ -36,6 +39,7 @@ updates:
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
+        versions: [">=8.3", "<99.0"]
 
   # Docker - /src/base/fpm
   - package-ecosystem: "docker"
