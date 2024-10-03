@@ -1,4 +1,4 @@
-PHP_VERSION := 8.2
+PHP_VERSION := 8.3
 REPO_PYTHON := $(REPO_BASE)-python
 REPO_EXT := $(REPO_PYTHON)-supervisor
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
