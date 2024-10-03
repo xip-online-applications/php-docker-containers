@@ -3,7 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://pecl.php.net/package/xdebug
-RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
+RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") -ge "8" ]; then \
     pecl install xdebug; \
   else \
     pecl install xdebug-3.1.5; \
