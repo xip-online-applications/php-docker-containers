@@ -6,9 +6,9 @@ RUN pecl install igbinary
 RUN pecl install -D 'enable-redis-igbinary="yes"' redis
 
 RUN cp `php-config --extension-dir`/igbinary.so /tmp/igbinary.so && \
-    cp `php-config --extension-dir`/redis.so /tmp/redis.so && \
-    echo 'extension=/opt/php/extensions/igbinary.so' > /tmp/ext-igbinary.ini && \
-    echo 'extension=/opt/php/extensions/redis.so' > /tmp/ext-redis.ini
+  cp `php-config --extension-dir`/redis.so /tmp/redis.so && \
+  echo 'extension=/opt/php/extensions/igbinary.so' > /tmp/ext-igbinary.ini && \
+  echo 'extension=/opt/php/extensions/redis.so' > /tmp/ext-redis.ini
 
 FROM scratch
 COPY --from=ext /tmp/igbinary.so /opt/php/extensions/igbinary.so

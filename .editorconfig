@@ -10,7 +10,7 @@ insert_final_newline = true
 [Dockerfile]
 ident_style = space
 
-[Makefile]
+[{*.}Makefile]
 indent_style = tab
 
 [*.md]
