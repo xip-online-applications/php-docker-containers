@@ -7,7 +7,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN mkdir -p /tmp/extensions && mkdir -p /tmp/conf.d
 
 RUN cp `php-config --extension-dir`/pdo_mysql.so /tmp/extensions/pdo_mysql.so \
-    && cp `php-config --extension-dir`/pdo.so /tmp/extensions/pdo.so
+  && cp `php-config --extension-dir`/pdo.so /tmp/extensions/pdo.so
 
 COPY ext-mysql.ini /tmp/conf.d/ext-mysql.ini
 

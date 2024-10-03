@@ -13,11 +13,11 @@ ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
 RUN DEBARCH="x86_64"; \
-    if [ "${TARGETARCH}" = "arm64" ]; then DEBARCH="aarch64"; fi; \
-    DOWNLOAD_URL="https://www.saxonica.com/download/libsaxon-HEC-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-v${LIBSAXON_VERSION}.zip"; \
-    curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
-    unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
-    mv /tmp/libsaxon/*/* /tmp/libsaxon
+  if [ "${TARGETARCH}" = "arm64" ]; then DEBARCH="aarch64"; fi; \
+  DOWNLOAD_URL="https://www.saxonica.com/download/libsaxon-HEC-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-v${LIBSAXON_VERSION}.zip"; \
+  curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
+  unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
+  mv /tmp/libsaxon/*/* /tmp/libsaxon
 
 WORKDIR /tmp/libsaxon
 
@@ -26,11 +26,11 @@ RUN cp libs/nix/* /usr/lib/.
 
 # Build Saxon
 RUN export "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib" \
-    && cd Saxon.C.API \
-    && phpize \
-    && ./configure --enable-saxon \
-    && make -j$(nproc) \
-    && make install
+  && cd Saxon.C.API \
+  && phpize \
+  && ./configure --enable-saxon \
+  && make -j$(nproc) \
+  && make install
 
 # Prepare files
 RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/lib64

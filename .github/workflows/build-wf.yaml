@@ -42,11 +42,11 @@ jobs:
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64,amd64
-      
+
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
         with:
           install: true
-      
+
       - name: Build
         run: "${{ inputs.command }}"

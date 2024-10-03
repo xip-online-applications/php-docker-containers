@@ -7,7 +7,7 @@ REPO_EXT := $(REPO_BASE)-$(notdir $(CURDIR))
 RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 
-BUILD_PREREQS ?= build-7.4 build-8.0 build-8.1 build-8.2
+BUILD_PREREQS ?= build-7.4 build-8.0 build-8.1 build-8.2 build-8.3
 
 build: $(BUILD_PREREQS)
 	echo "Done build."

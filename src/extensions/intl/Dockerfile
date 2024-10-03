@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libicu-dev \
   && apt-get clean
 
 RUN docker-php-ext-configure intl \
-	&& docker-php-ext-install intl
+  && docker-php-ext-install intl
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
 RUN mv `php-config --extension-dir`/intl.so /tmp/extensions/intl.so

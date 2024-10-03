@@ -9,7 +9,7 @@ RUN docker-php-ext-install curl
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
 RUN mv `php-config --extension-dir`/curl.so /tmp/extensions/curl.so \
-    && echo "extension=/opt/php/extensions/curl.so" >> /tmp/conf.d/ext-curl.ini
+  && echo "extension=/opt/php/extensions/curl.so" >> /tmp/conf.d/ext-curl.ini
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/

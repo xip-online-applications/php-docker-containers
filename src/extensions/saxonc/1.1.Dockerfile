@@ -1,6 +1,6 @@
 ARG REPO
 ARG PHP_VERSION
-FROM ${REPO}:${PHP_VERSION} as ext
+FROM ${REPO}:${PHP_VERSION} AS ext
 
 ARG LIBSAXON_VERSION=1.1.2
 ARG LIBSAXON_ARCHITECTURE=64
@@ -10,22 +10,22 @@ ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
 RUN curl --insecure -LsS -o /libsaxon-setup.zip https://www.saxonica.com/saxon-c/$LIBSAXON_DOWNLOAD_FILE_NAME.zip \
-    && unzip /libsaxon-setup.zip \
-    && rm /libsaxon-setup.zip
+  && unzip /libsaxon-setup.zip \
+  && rm /libsaxon-setup.zip
 
 # Prepare saxon installation
 COPY install-libsaxon-setup.sh /install-libsaxon-setup.sh
 RUN chmod u+x /install-libsaxon-setup.sh \
-    && . /install-libsaxon-setup.sh \
-    && cp /Saxon-HEC$LIBSAXON_VERSION/libsaxonhec.so /usr/lib/ \
-    && cp -r /Saxon-HEC$LIBSAXON_VERSION/rt /usr/lib/rt
+  && . /install-libsaxon-setup.sh \
+  && cp /Saxon-HEC$LIBSAXON_VERSION/libsaxonhec.so /usr/lib/ \
+  && cp -r /Saxon-HEC$LIBSAXON_VERSION/rt /usr/lib/rt
 
 # Build saxon
 RUN cd /Saxon-HEC$LIBSAXON_VERSION/Saxon.C.API \
-    && phpize \
-    && ./configure --enable-saxon \
-    && make -j$(nproc) \
-    && make install
+  && phpize \
+  && ./configure --enable-saxon \
+  && make -j$(nproc) \
+  && make install
 
 # Prepare files
 RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/lib64

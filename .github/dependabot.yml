@@ -40,6 +40,14 @@ updates:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
         versions: [">=8.3", "<99.0"]
+  - package-ecosystem: "docker"
+    directory: "/src/base/build/8.3"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major" ]
+        versions: [">=8.4", "<99.0"]
 
   # Docker - /src/base/fpm
   - package-ecosystem: "docker"
@@ -74,3 +82,11 @@ updates:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major" ]
         versions: [">=8.3", "<99.0"]
+  - package-ecosystem: "docker"
+    directory: "/src/base/fpm/8.3"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major" ]
+        versions: [">=8.4", "<99.0"]
