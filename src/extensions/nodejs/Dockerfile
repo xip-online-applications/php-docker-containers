@@ -1,7 +1,7 @@
 ARG NODEJS_VERSION
 FROM node:$NODEJS_VERSION AS node
 
-FROM debian:stable AS ext
+FROM debian:oldstable AS ext
 
 ENV PATH=$PATH:/opt/bin
 
