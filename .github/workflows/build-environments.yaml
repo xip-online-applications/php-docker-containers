@@ -19,6 +19,10 @@ on:
       token:
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-environments
+  cancel-in-progress: true
+
 jobs:
   dev:
     name: "dev"

@@ -16,6 +16,10 @@ on:
       token:
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-extensions
+  cancel-in-progress: true
+
 jobs:
   amqp:
     name: "amqp"
