@@ -19,10 +19,6 @@ on:
       token:
         required: true
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}-base
-  cancel-in-progress: true
-
 jobs:
   build:
     name: "Build container"
