@@ -4,7 +4,7 @@ ARG REPO_PYTHON
 
 FROM $REPO_PYTHON AS base
 
-FROM debian:bullseye AS ext
+FROM debian:oldstable AS ext
 
 COPY --from=base /opt /opt
 
