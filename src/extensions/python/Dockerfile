@@ -7,7 +7,7 @@ RUN apt update \
 RUN mkdir -p /opt/share/python /opt/bin
 
 # https://www.openssl.org/source/
-ARG OPENSSL_VERSION=3.1.5
+ARG OPENSSL_VERSION=3.1.7
 RUN curl -sS -o openssl.tar.gz "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" \
   && tar -xzf openssl.tar.gz
 
@@ -17,7 +17,7 @@ RUN cd openssl-$OPENSSL_VERSION \
   && make install
 
 # https://www.python.org/downloads/
-ARG VERSION=3.12.2
+ARG VERSION=3.12.7
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
   && tar -xzf python.tgz
 

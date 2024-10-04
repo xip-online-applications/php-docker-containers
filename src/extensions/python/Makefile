@@ -1,6 +1,6 @@
 RELEASE_TAG_SHORT_NO_PATCH = $$(echo "$${VERSION%.*}")
 RELEASE_TAG_SHORT_JUST_MAJOR = $$(echo "$${VERSION%.*.*}")
-BUILD_PREREQS := build-3.11.8 build-3.12.2
+BUILD_PREREQS := build-3.11.8 build-3.12.2 build-3.12.7
 
 include ../common.Makefile
 
