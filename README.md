@@ -9,13 +9,13 @@ The main idea behind this project is based on the [Bref](https://github.com/bref
 
 ## How to use
 
-Using this project is fairly easy. You start your Dockerfile with the base container. The base containers life in registry `ghcr.io/xip-online-applications/php-docker-containers/php` and are versions like this: `<PHP VERSION>[.<CONTAINER RELEASE VERSION>][-fpm]`. Example for PHP-FPM version 8:
+Using this project is fairly easy. You start your Dockerfile with the base container. The base containers live in registry `ghcr.io/xip-online-applications/php-docker-containers/php` and are versioned like this: `<PHP VERSION>[.<CONTAINER RELEASE VERSION>][-fpm]`. Example for PHP-FPM version 8:
 
 ```Dockerfile
 FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.1-fpm
 ```
 
-Now lets say you want to use the extensions MySQL and Redis. Each extension lifes in its ow registry like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versionsing is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir from the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
+Now lets say you want to use the extensions MySQL and Redis. Each extension lives in its ow registry like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
 
 ```Dockerfile
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.1 /opt /opt
@@ -50,6 +50,7 @@ See the list of available extensions below:
 | mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    |                                                      |
 | nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on node versions: 14, 16, 18 and 19 |
 | opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                      |
+| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     |                                                      |
 | pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                      |
 | rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                      |
 | redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                      |
