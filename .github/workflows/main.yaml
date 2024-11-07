@@ -1,4 +1,4 @@
-name: Build the latest containes.
+name: Build the latest containers.
 
 on:
   push:
