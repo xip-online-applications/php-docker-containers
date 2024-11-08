@@ -18,6 +18,7 @@ RUN cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true
 
 WORKDIR /opt/conf.d
 RUN cp "/usr/local/etc/php/conf.d:/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
+  && cp "/opt/php/conf.d:/usr/local/etc/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
   && cp "/usr/local/etc/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
   && cp "/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
   && test -f ext-datadog.ini
