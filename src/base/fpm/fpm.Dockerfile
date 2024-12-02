@@ -17,7 +17,7 @@ ENV TM_PHP_CONF_DIR=/opt/php/conf.d
 ENV TM_PHP_EXTENSION_DIR=/opt/php/extensions
 ENV TM_PHP_LIB_DIR=/opt/php/lib64
 
-ENV PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:$TM_PHP_CONF_DIR
+ENV PHP_INI_SCAN_DIR=$TM_PHP_CONF_DIR:/usr/local/etc/php/conf.d
 ENV PATH=$PATH:$TM_PHP_BIN_DIR
 ENV LD_LIBRARY_PATH=$TM_PHP_LIB_DIR
 
