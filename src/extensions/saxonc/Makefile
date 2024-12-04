@@ -4,7 +4,7 @@ RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 
 include ../common.Makefile
 
-build: build-7.4 build-8.0 build-8.1 build-8.2 build-8.3
+build: build-7.4 build-8.0 build-8.1 build-8.2 build-8.3 build-8.4
 	echo "Done build."
 
 build-7.4:
