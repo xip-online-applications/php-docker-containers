@@ -3,7 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://github.com/DataDog/dd-trace-php/releases
-RUN if [ $(php -r "echo PHP_MAJOR_VERSION;") -ge "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") -gt 3 ]; then \
+RUN if ([ $(php -r "echo PHP_MAJOR_VERSION;") -ge "8" ] && [ $(php -r "echo PHP_MINOR_VERSION;") -gt 3 ]); then \
     curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/1.5.1/datadog-setup.php" --output /tmp/datadog-setup.php \
       && php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling \
   else \
