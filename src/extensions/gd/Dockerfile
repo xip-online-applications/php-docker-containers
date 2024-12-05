@@ -2,13 +2,20 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
+# Install dependencies with apt-get
 RUN apt-get update && apt-get install -y \
-  libpng-dev libjpeg-dev libgmp-dev \
-  && apt-get clean
+    libpng-dev \
+    libjpeg-dev \
+    libgmp-dev \
+    libwebp-dev \
+    libfreetype6-dev \
+    && apt-get clean
 
-RUN docker-php-ext-configure gmp
-RUN docker-php-ext-install gmp
-RUN docker-php-ext-install gd
+# Configure and install GMP
+RUN docker-php-ext-configure gmp && docker-php-ext-install gmp
+
+# Configure and install GD with JPEG, WebP, and FreeType support
+RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype && docker-php-ext-install gd
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
 RUN mv `php-config --extension-dir`/gmp.so /tmp/extensions/gmp.so \
