@@ -1,2 +1,2 @@
 # https://hub.docker.com/_/php
-FROM php:8.2.27
+FROM php:8.2.28
