@@ -11,12 +11,12 @@ The main idea behind this project is based on the [Bref](https://github.com/bref
 
 This project follows the [PHP supported versions](https://www.php.net/supported-versions.php) and supports the following PHP versions:
 
-| PHP Version | Supported until     |
-|-------------|--------------------|
-| 8.1         | 25 November 2024   |
-| 8.2         | 4 December 2025    |
-| 8.3         | 4 December 2026    |
-| 8.4         | 4 December 2027    |
+| PHP Version | Supported until  | Security fixes until |
+|-------------|------------------|----------------------|
+| 8.1         | 25 November 2024 | 31 December 2025     |
+| 8.2         | 4 December 2025  | 31 December 2026     |
+| 8.3         | 4 December 2026  | 31 December 2027     |
+| 8.4         | 4 December 2027  | 31 December 2028     |
 
 Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained anymore.
 
