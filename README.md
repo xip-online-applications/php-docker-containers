@@ -7,6 +7,19 @@ It is a lot of work to build PHP containers over and over again, let alone the w
 
 The main idea behind this project is based on the [Bref](https://github.com/brefphp/bref) development containers. This project provides a base [PHP or PHP-FPM container](https://github.com/xip-online-applications/php-docker-containers/pkgs/container/php-docker-containers%2Fphp) and many prebuild extensions. All you have to do, is combine them into your own project.
 
+## Supported PHP versions
+
+This project follows the [PHP supported versions](https://www.php.net/supported-versions.php) and supports the following PHP versions:
+
+| PHP Version | Supported until     |
+|-------------|--------------------|
+| 8.1         | 25 November 2024   |
+| 8.2         | 4 December 2025    |
+| 8.3         | 4 December 2026    |
+| 8.4         | 4 December 2027    |
+
+Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained anymore.
+
 ## How to use
 
 Using this project is fairly easy. You start your Dockerfile with the base container. The base containers live in registry `ghcr.io/xip-online-applications/php-docker-containers/php` and are versioned like this: `<PHP VERSION>[.<CONTAINER RELEASE VERSION>][-fpm]`. Example for PHP-FPM version 8:
@@ -55,6 +68,7 @@ See the list of available extensions below:
 | rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                      |
 | redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                      |
 | saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   | Only for PHP version 7.4                             |
+| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     |                                                      |
 | xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   |                                                      |
 | xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      |                                                      |
 | xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      |                                                      |
