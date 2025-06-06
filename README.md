@@ -115,3 +115,11 @@ This will build the extension with `DEV_BUILD_VERSION` defaulted to the lowest w
 ```shell
 make dev-extension-<EXTENSION> DEV_BUILD_VERSION=8.3 
 ```
+
+To make debugging easier, you can add `exit 1` to your RUN line to list the real command response like this to your Dockerfile to search for paths:
+
+```Dockerfile
+RUN cd `php-config --extension-dir` \
+    && ls -la \
+    && exit 1
+```
