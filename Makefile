@@ -1,6 +1,8 @@
 include common.Makefile
 .PHONY: prepare docker-login all base extensions release
 
+DEV_BUILD_VERSION := 8.1
+
 prepare:
 	#sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -26,7 +28,7 @@ dev-base-%: # Build a release version for a specific extension
 	cd src/base ; $(MAKE) build-$* RELEASE=$(RELEASE) REPO=$(REPO)
 
 dev-extension-%: # Build a release version for a specific extension
-	cd src/extensions ; $(MAKE) ext-$* RELEASE=$(RELEASE) REPO=$(REPO)
+	cd src/extensions ; $(MAKE) dev-ext-$* RELEASE=$(RELEASE) REPO=$(REPO) DEV_BUILD_VERSION=$(DEV_BUILD_VERSION)
 
 dev-env-%: # Build a release version for a specific environment
 	cd src/envs ; $(MAKE) env-$* RELEASE=$(RELEASE) REPO=$(REPO)

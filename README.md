@@ -11,12 +11,12 @@ The main idea behind this project is based on the [Bref](https://github.com/bref
 
 This project follows the [PHP supported versions](https://www.php.net/supported-versions.php) and supports the following PHP versions:
 
-| PHP Version | Supported until     |
-|-------------|--------------------|
-| 8.1         | 25 November 2024   |
-| 8.2         | 4 December 2025    |
-| 8.3         | 4 December 2026    |
-| 8.4         | 4 December 2027    |
+| PHP Version | Supported until  | Security fixes until |
+|-------------|------------------|----------------------|
+| 8.1         | 25 November 2024 | 31 December 2025     |
+| 8.2         | 4 December 2025  | 31 December 2026     |
+| 8.3         | 4 December 2026  | 31 December 2027     |
+| 8.4         | 4 December 2027  | 31 December 2028     |
 
 Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained anymore.
 
@@ -101,3 +101,25 @@ To develop a new extension, you need to make sure you do the following:
 * Make sure your extension image is based on `scratch` with a copyable `/opt` directory
 * The build of your extension is added to [`.github/workflows/build-extensions.yaml`](./.github/workflows/build-extensions.yaml)
 * Add the extension to the `README.md` file at section `Available extensions`
+
+### Development build of an extension
+
+To build an extension locally, you can use the following command:
+
+```shell
+make dev-extension-<EXTENSION>
+```
+
+This will build the extension with `DEV_BUILD_VERSION` defaulted to the lowest we support. You can override this by setting the `DEV_BUILD_VERSION` environment variable:
+
+```shell
+make dev-extension-<EXTENSION> DEV_BUILD_VERSION=8.3 
+```
+
+To make debugging easier, you can add `exit 1` to your RUN line to list the real command response like this to your Dockerfile to search for paths:
+
+```Dockerfile
+RUN cd `php-config --extension-dir` \
+    && ls -la \
+    && exit 1
+```
