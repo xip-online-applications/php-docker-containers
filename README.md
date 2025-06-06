@@ -101,3 +101,17 @@ To develop a new extension, you need to make sure you do the following:
 * Make sure your extension image is based on `scratch` with a copyable `/opt` directory
 * The build of your extension is added to [`.github/workflows/build-extensions.yaml`](./.github/workflows/build-extensions.yaml)
 * Add the extension to the `README.md` file at section `Available extensions`
+
+### Development build of an extension
+
+To build an extension locally, you can use the following command:
+
+```shell
+make dev-extension-<EXTENSION>
+```
+
+This will build the extension with `DEV_BUILD_VERSION` defaulted to the lowest we support. You can override this by setting the `DEV_BUILD_VERSION` environment variable:
+
+```shell
+make dev-extension-<EXTENSION> DEV_BUILD_VERSION=8.3 
+```
