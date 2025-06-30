@@ -4,15 +4,9 @@ RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 
 include ../common.Makefile
 
-build: build-7.4 build-8.0 build-8.1 build-8.2 build-8.3 build-8.4
+build: build-8.1 build-8.2 build-8.3 build-8.4
 	echo "Done build."
 
-build-7.4:
-	$(MAKE) for-version SAXON_VERSION=1.1 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
-	$(MAKE) for-version SAXON_VERSION=1.2 VERSION=7.4 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64
-
-build-8.0:
-	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.0 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64,linux/arm64
 build-8.1:
 	$(MAKE) for-version SAXON_VERSION=12 VERSION=8.1 RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64,linux/arm64
 build-8.2:
