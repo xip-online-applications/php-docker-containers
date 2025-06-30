@@ -3,18 +3,16 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y \
-  libpng-dev libjpeg-dev libgmp-dev \
-  && apt-get clean
-
-RUN docker-php-ext-configure gmp
-RUN docker-php-ext-install gmp
-RUN docker-php-ext-install gd
-
-RUN mkdir -p /tmp/extensions /tmp/conf.d
-RUN mv `php-config --extension-dir`/gmp.so /tmp/extensions/gmp.so \
-  && echo "extension=/opt/php/extensions/gmp.so" >> /tmp/conf.d/ext-gmp.ini
-RUN mv `php-config --extension-dir`/gd.so /tmp/extensions/gd.so \
-  && echo "extension=/opt/php/extensions/gd.so" >> /tmp/conf.d/ext-gd.ini
+    libgmp-dev libjpeg-dev libpng-dev && \
+    apt-get clean && \
+    docker-php-ext-configure gmp && \
+    docker-php-ext-install gmp && \
+    docker-php-ext-install gd && \
+    mkdir -p /tmp/extensions /tmp/conf.d && \
+    mv `php-config --extension-dir`/gmp.so /tmp/extensions/gmp.so && \
+    echo "extension=/opt/php/extensions/gmp.so" >> /tmp/conf.d/ext-gmp.ini && \
+    mv `php-config --extension-dir`/gd.so /tmp/extensions/gd.so && \
+    echo "extension=/opt/php/extensions/gd.so" >> /tmp/conf.d/ext-gd.ini
 
 USER root
 RUN mkdir -p /tmp/lib64 \

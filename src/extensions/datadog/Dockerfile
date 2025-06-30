@@ -11,16 +11,14 @@ RUN if ([ $(php -r "echo PHP_MAJOR_VERSION;") -ge "8" ] && [ $(php -r "echo PHP_
       && php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling; \
   fi
 
-# Download and install
-RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php" --output /tmp/datadog-setup.php \
-  && php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling
+ADD https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php /tmp/datadog-setup.php
+RUN php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling && \
+    mkdir -p /opt/extension && mkdir -p /opt/conf.d
 
-# Copy all files
-RUN mkdir -p /opt/extension && mkdir -p /opt/conf.d
 WORKDIR /opt/extension
-RUN cp "$(php-config --extension-dir)/ddtrace.so" ./ | true && test -f ./ddtrace.so
-RUN cp "$(php-config --extension-dir)/ddappsec.so" ./ | true
-RUN cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true
+RUN cp "$(php-config --extension-dir)/ddtrace.so" ./ | true && test -f ./ddtrace.so && \
+    cp "$(php-config --extension-dir)/ddappsec.so" ./ | true && \
+    cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true && \
 
 WORKDIR /opt/conf.d
 RUN cp "/usr/local/etc/php/conf.d:/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \

@@ -2,13 +2,12 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN pecl install igbinary
-RUN pecl install -D 'enable-redis-igbinary="yes"' redis
-
-RUN cp `php-config --extension-dir`/igbinary.so /tmp/igbinary.so && \
-  cp `php-config --extension-dir`/redis.so /tmp/redis.so && \
-  echo 'extension=/opt/php/extensions/igbinary.so' > /tmp/ext-igbinary.ini && \
-  echo 'extension=/opt/php/extensions/redis.so' > /tmp/ext-redis.ini
+RUN pecl install igbinary && \
+    pecl install -D 'enable-redis-igbinary="yes"' redis && \
+    cp `php-config --extension-dir`/igbinary.so /tmp/igbinary.so && \
+    cp `php-config --extension-dir`/redis.so /tmp/redis.so && \
+    echo 'extension=/opt/php/extensions/igbinary.so' > /tmp/ext-igbinary.ini && \
+    echo 'extension=/opt/php/extensions/redis.so' > /tmp/ext-redis.ini
 
 FROM scratch
 COPY --from=ext /tmp/igbinary.so /opt/php/extensions/igbinary.so

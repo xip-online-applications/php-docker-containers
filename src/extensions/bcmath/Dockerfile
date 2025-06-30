@@ -2,10 +2,9 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-RUN docker-php-ext-install bcmath
-
-RUN mkdir -p /tmp/extensions /tmp/conf.d
-RUN mv `php-config --extension-dir`/bcmath.so /tmp/extensions/bcmath.so
+RUN docker-php-ext-install bcmath && \
+    mkdir -p /tmp/extensions /tmp/conf.d && \
+    mv `php-config --extension-dir`/bcmath.so /tmp/extensions/bcmath.source
 
 COPY ext-bcmath.ini /tmp/conf.d/ext-bcmath.ini
 
