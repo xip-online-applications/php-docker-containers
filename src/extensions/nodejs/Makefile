@@ -1,4 +1,7 @@
-BUILD_PREREQS := build-14 build-16 build-18 build-19 build-20 build-22 build-24
+# https://nodejs.org/en/about/previous-releases
+# Try to only add the latest LTS versions here
+
+BUILD_PREREQS := build-18 build-20 build-22
 
 include ../common.Makefile
 
