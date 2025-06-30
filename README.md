@@ -61,7 +61,7 @@ See the list of available extensions below:
 | mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring |                                                      |
 | mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  |                                                      |
 | mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    |                                                      |
-| nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on node versions: 14, 16, 18 and 19 |
+| nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on node versions: 18, 20, and 22    |
 | opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                      |
 | pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     |                                                      |
 | pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                      |
