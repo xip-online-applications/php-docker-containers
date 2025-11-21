@@ -22,14 +22,17 @@ RUN DEBARCH="x86_64"; \
 WORKDIR /tmp/libsaxon
 
 # Copy required files
-RUN cp libs/nix/* /usr/lib/.
+RUN cp -r SaxonCHE/lib/* /usr/lib/
+RUN cp -r SaxonCHE/include/* /usr/include/
 
+WORKDIR /tmp/libsaxon/php/src
 # Build Saxon
 RUN export "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib" \
-  && cd Saxon.C.API \
   && phpize \
-  && ./configure --enable-saxon \
+  && autoupdate \
+  && ./configure \
   && make -j$(nproc) \
+  && make test \
   && make install
 
 # Prepare files
