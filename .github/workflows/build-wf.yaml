@@ -23,7 +23,15 @@ on:
 jobs:
   container:
     name: build ${{ inputs.name }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-latest
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,15 +46,10 @@ jobs:
           username: ${{ inputs.actor }}
           password: ${{ secrets.token }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64,amd64
-
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
         with:
           install: true
 
       - name: Build
-        run: "${{ inputs.command }}"
+        run: "${{ inputs.command }} --platform ${{ matrix.platform }} --provenance=false"
