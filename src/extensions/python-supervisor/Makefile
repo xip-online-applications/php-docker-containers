@@ -8,7 +8,7 @@ BUILD_PREREQS := build-3.11.6 build-3.12.0
 include ../common.Makefile
 
 for-version:
-	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform linux/amd64,linux/arm64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg REPO_PYTHON=$(REPO_PYTHON):$(VERSION)  --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):cache --cache-to type=registry,ref=$(REPO_EXT):cache,mode=max --platform linux/amd64,linux/arm64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --build-arg REPO_PYTHON=$(REPO_PYTHON):$(VERSION)  --push .
 	# Just as :X.X.X
 	docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG)
 	# Just as :X.X
