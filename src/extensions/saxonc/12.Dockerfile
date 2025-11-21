@@ -6,15 +6,15 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 ARG TARGETARCH
 
 # https://www.saxonica.com/download/c.xml
-ARG LIBSAXON_VERSION=12.9
+ARG LIBSAXON_VERSION=12-9-0
 ARG LIBSAXON_ARCHITECTURE=linux
 
 ENV SAXONC_HOME=/opt/php/lib64
 
 # Download saxon lib
 RUN DEBARCH="x86_64"; \
-  if [ "${TARGETARCH}" = "arm64" ]; then DEBARCH="aarch64"; fi; \
-  DOWNLOAD_URL="https://www.saxonica.com/download/libsaxon-HEC-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-v${LIBSAXON_VERSION}.zip"; \
+  if [ "${TARGETARCH}" = "arm64" ]; then DEBARCH="arm64"; fi; \
+  DOWNLOAD_URL="https://downloads.saxonica.com/SaxonC/HE/12/SaxonCHE-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-${LIBSAXON_VERSION}.zip"; \
   curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
   unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
   mv /tmp/libsaxon/*/* /tmp/libsaxon
