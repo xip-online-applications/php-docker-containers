@@ -17,7 +17,8 @@ RUN DEBARCH="x86_64"; \
   DOWNLOAD_URL="https://downloads.saxonica.com/SaxonC/HE/12/SaxonCHE-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-${LIBSAXON_VERSION}.zip"; \
   curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
   unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
-  mv /tmp/libsaxon/*/* /tmp/libsaxon
+  mv /tmp/libsaxon/*/* /tmp/libsaxon; \
+  mv /tmp/libsaxon/SaxonCHE/* /tmp/libsaxon
 
 WORKDIR /tmp/libsaxon
 
