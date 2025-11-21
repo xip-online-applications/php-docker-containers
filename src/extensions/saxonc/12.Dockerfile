@@ -41,11 +41,6 @@ RUN cp "$(php-config --extension-dir)/saxon.so" /tmp/extensions/saxonc.so
 RUN echo "extension=/opt/php/extensions/saxonc.so" >> /tmp/conf.d/ext-saxonc.ini
 RUN cp /usr/lib/libsaxon-* /tmp/lib64/
 
-RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/lib64
-RUN mv `php-config --extension-dir`/zip.so /tmp/extensions/zip.so \
-  && echo "extension=/opt/php/extensions/zip.so" >> /tmp/conf.d/ext-zip.ini \
-  && cp -d `find /usr/lib -name "libzip.so*"` /tmp/lib64/
-
 # The definitive build
 FROM scratch
 COPY --from=ext /tmp/conf.d/ /opt/php/conf.d/
