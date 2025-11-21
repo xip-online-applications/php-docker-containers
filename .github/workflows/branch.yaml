@@ -3,9 +3,9 @@ name: Build the latest containers.
 on:
   push:
     branches-ignore:
-      - 'main'
+      - "main"
     tags-ignore:
-      - '*'
+      - "*"
 
 permissions:
   contents: read

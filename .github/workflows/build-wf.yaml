@@ -6,7 +6,7 @@ on:
       name:
         required: false
         type: string
-        default: 'container'
+        default: "container"
       registry:
         required: true
         type: string

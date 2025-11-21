@@ -11,5 +11,5 @@ build-%:
 	$(MAKE) for-version SAXON_VERSION=12 VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64,linux/arm64
 
 for-version:
-	docker buildx build --cache-from type=gha --cache-to type=gha,mode=max --platform $(PLATFORM) --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --file $(SAXON_VERSION).Dockerfile --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):cache --cache-to type=registry,ref=$(REPO_EXT):cache,mode=max --platform $(PLATFORM) --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --file $(SAXON_VERSION).Dockerfile --push .
 	docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG)
