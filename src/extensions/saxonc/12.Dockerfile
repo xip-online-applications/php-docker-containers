@@ -17,20 +17,22 @@ RUN DEBARCH="x86_64"; \
   DOWNLOAD_URL="https://downloads.saxonica.com/SaxonC/HE/12/SaxonCHE-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-${LIBSAXON_VERSION}.zip"; \
   curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
   unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
-  mv /tmp/libsaxon/*/* /tmp/libsaxon; \
-  mv /tmp/libsaxon/SaxonCHE/* /tmp/libsaxon
+  mv /tmp/libsaxon/*/* /tmp/libsaxon;
 
 WORKDIR /tmp/libsaxon
 
 # Copy required files
-RUN cp lib/* /usr/lib/.
+RUN cp -r SaxonCHE/lib/* /usr/lib/
+RUN cp -r SaxonCHE/include/* /usr/include/
 
+WORKDIR /tmp/libsaxon/php/src
 # Build Saxon
 RUN export "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib" \
-  && cd Saxon.C.API \
   && phpize \
-  && ./configure --enable-saxon \
+  && autoupdate \
+  && ./configure \
   && make -j$(nproc) \
+  && make test \
   && make install
 
 # Prepare files
