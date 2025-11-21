@@ -23,7 +23,7 @@ RUN DEBARCH="x86_64"; \
 WORKDIR /tmp/libsaxon
 
 # Copy required files
-RUN cp libs/nix/* /usr/lib/.
+RUN cp lib/* /usr/lib/.
 
 # Build Saxon
 RUN export "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib" \
