@@ -86,7 +86,7 @@ There are also some environment specific extensions available:
 First you need to prepare your local environment by preparing buildx:
 
 ```shell
-docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
+docker buildx create --name php-docker-containers --use --bootstrap --driver docker-container
 ```
 
 Also authorize to the Github registry with your Github PAT:

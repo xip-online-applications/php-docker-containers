@@ -6,7 +6,7 @@ DEV_BUILD_VERSION := 8.1
 prepare:
 	#sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-	docker buildx create --platform "linux/amd64,linux/arm64" --use
+	docker buildx create --use
 
 docker-login:
 	echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_USER} --password-stdin
