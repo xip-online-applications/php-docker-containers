@@ -6,8 +6,13 @@ RUN apt-get update && apt-get install -y librabbitmq-dev \
   && apt-get clean
 
 # Install AMQP
+#TODO: get rid of the issue-php85 branch when php-amqp supports PHP 8.5+
 RUN docker-php-source extract \
-  && git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
+  && if [ $(php -r "echo PHP_VERSION_ID;") -ge 80500 ]; then \
+      git clone --branch issue-php85 --depth 1 https://github.com/remicollet/php-amqp.git /usr/src/php/ext/amqp; \
+    else \
+      git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
+    fi \
   && cd /usr/src/php/ext/amqp \
   && git submodule update --init \
   && docker-php-ext-install amqp
