@@ -10,7 +10,7 @@ insert_final_newline = true
 ident_style = space
 trim_trailing_whitespace = true
 
-[{*.}Makefile]
+[Makefile]
 indent_style = tab
 trim_trailing_whitespace = true
 
