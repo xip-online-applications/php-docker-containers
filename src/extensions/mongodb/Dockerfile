@@ -5,8 +5,14 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 RUN apt-get update && apt-get install -y libssl-dev \
   && apt-get clean
 
-RUN yes '' | pecl install mongodb
-RUN docker-php-ext-enable mongodb
+WORKDIR /tmp
+RUN pecl bundle mongodb \
+  && cd mongodb \
+  && phpize \
+  && ./configure --enable-mongodb \
+  && make -j$(nproc) \
+  && make install \
+  && docker-php-ext-enable mongodb
 
 RUN mkdir -p /tmp/extensions && mkdir -p /tmp/conf.d
 RUN cp `php-config --extension-dir`/mongodb.so /tmp/extensions/mongodb.so && \
