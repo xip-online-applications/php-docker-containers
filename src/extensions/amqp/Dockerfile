@@ -11,7 +11,7 @@ RUN docker-php-source extract \
   && if [ $(php -r "echo PHP_VERSION_ID;") -ge 80500 ]; then \
       git clone --branch issue-php85 --depth 1 https://github.com/remicollet/php-amqp.git /usr/src/php/ext/amqp; \
     else \
-      git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
+      git clone --branch latest --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp; \
     fi \
   && cd /usr/src/php/ext/amqp \
   && git submodule update --init \
