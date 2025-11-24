@@ -1,7 +1,7 @@
 include common.Makefile
 .PHONY: prepare docker-login all base extensions release
 
-DEV_BUILD_VERSION := 8.1
+DEV_BUILD_VERSION := 8.5
 
 prepare:
 	#sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
