@@ -27,7 +27,7 @@ jobs:
       name: "dev"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }} DEV_BUILD_VERSION=8.5"
     secrets:
       token: ${{ secrets.token }}
 
