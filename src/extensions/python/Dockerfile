@@ -19,6 +19,7 @@ RUN cd openssl-$OPENSSL_VERSION \
 
 # Choose latest security version:
 # https://www.python.org/downloads/
+# Also adjust in Makefile and python-supervisor/Makefile
 ARG VERSION=3.12.12
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
   && tar -xzf python.tgz
