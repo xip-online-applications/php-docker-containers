@@ -24,7 +24,7 @@ jobs:
     name: "Build container"
     uses: ./.github/workflows/build-wf.yaml
     with:
-      name: 'base'
+      name: "base"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-base-build RELEASE=${{ inputs.release }}"
@@ -36,7 +36,7 @@ jobs:
     needs: build
     uses: ./.github/workflows/build-wf.yaml
     with:
-      name: 'fpm'
+      name: "fpm"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-base-fpm RELEASE=${{ inputs.release }}"

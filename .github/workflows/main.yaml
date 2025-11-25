@@ -2,7 +2,7 @@ name: Build the latest containers.
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 permissions:
   contents: read

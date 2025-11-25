@@ -6,8 +6,9 @@ RUN apt update \
 
 RUN mkdir -p /opt/share/python /opt/bin
 
+# Choose least recent LTS version:
 # https://www.openssl.org/source/
-ARG OPENSSL_VERSION=3.1.7
+ARG OPENSSL_VERSION=3.5.4
 RUN curl -sS -o openssl.tar.gz "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" \
   && tar -xzf openssl.tar.gz
 
@@ -16,8 +17,10 @@ RUN cd openssl-$OPENSSL_VERSION \
   && make -j$(nproc) \
   && make install
 
+# Choose latest security version:
 # https://www.python.org/downloads/
-ARG VERSION=3.12.7
+# Also adjust in Makefile and python-supervisor/Makefile
+ARG VERSION=3.12.12
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
   && tar -xzf python.tgz
 
