@@ -1,5 +1,5 @@
-ARG NODEJS_VERSION
-FROM node:$NODEJS_VERSION AS node
+ARG NODEJS_VERSION=lts
+FROM node:${NODEJS_VERSION} AS node
 
 FROM debian:oldstable AS ext
 
