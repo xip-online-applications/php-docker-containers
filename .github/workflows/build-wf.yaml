@@ -6,7 +6,7 @@ on:
       name:
         required: false
         type: string
-        default: 'container'
+        default: "container"
       registry:
         required: true
         type: string
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Expose GitHub Runtime
         uses: crazy-max/ghaction-github-runtime@v3

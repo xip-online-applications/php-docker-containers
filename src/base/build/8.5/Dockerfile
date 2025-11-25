@@ -1,2 +1,2 @@
 # https://hub.docker.com/_/php
-FROM php:8.3.25-fpm
+FROM php:8.5.0
