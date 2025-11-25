@@ -24,10 +24,10 @@ jobs:
     name: "dev"
     uses: ./.github/workflows/build-wf.yaml
     with:
-      name: 'dev'
+      name: "dev"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }}"
+      command: "make -j4 ${{ inputs.stage }}-env-dev RELEASE=${{ inputs.release }} DEV_BUILD_VERSION=8.5"
     secrets:
       token: ${{ secrets.token }}
 
@@ -35,7 +35,7 @@ jobs:
     name: "prod"
     uses: ./.github/workflows/build-wf.yaml
     with:
-      name: 'prod'
+      name: "prod"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       command: "make -j4 ${{ inputs.stage }}-env-prod RELEASE=${{ inputs.release }}"

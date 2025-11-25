@@ -5,13 +5,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
 
   # Docker - /src/base/build
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.1"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
@@ -19,7 +19,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.2"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
@@ -27,7 +27,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.3"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
@@ -35,11 +35,19 @@ updates:
   - package-ecosystem: "docker"
     directory: "/src/base/build/8.4"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
         versions: [">=8.5"]
+  - package-ecosystem: "docker"
+    directory: "/src/base/build/8.5"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
+        versions: [">=8.6"]
 
   # Docker - /src/base/fpm
   - package-ecosystem: "docker"
@@ -74,3 +82,11 @@ updates:
       - dependency-name: "php"
         update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
         versions: [">=8.5"]
+  - package-ecosystem: "docker"
+    directory: "/src/base/fpm/8.5"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "php"
+        update-types: [ "version-update:semver-major", "version-update:semver-minor" ]
+        versions: [">=8.6"]
