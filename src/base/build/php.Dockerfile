@@ -47,4 +47,6 @@ serverurl=unix:///tmp/supervisor.sock
 files = /etc/supervisor/conf.d/*.conf
 EOT
 
+RUN ln -s /usr/bin/supervisord /opt/bin/supervisord
+
 COPY php.ini /usr/local/etc/php/php.ini

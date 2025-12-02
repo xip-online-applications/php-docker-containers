@@ -52,6 +52,8 @@ serverurl=unix:///tmp/supervisor.sock
 files = /etc/supervisor/conf.d/*.conf
 EOT
 
+RUN ln -s /usr/bin/supervisord /opt/bin/supervisord
+
 COPY --from=base /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 COPY --from=base /opt /opt
 COPY www.conf /usr/local/etc/php-fpm.d/xiponlineapplications.conf
