@@ -50,30 +50,30 @@ Check the [example](./example) directory for a fully working example of the abov
 
 See the list of available extensions below:
 
-| Extension | Container                                                                | Notes                                                |
-|-----------|--------------------------------------------------------------------------|------------------------------------------------------|
-| amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     |                                                      |
-| bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   |                                                      |
-| composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer |                                                      |
-| curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     |                                                      |
-| datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  |                                                      |
-| gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       |                                                      |
-| intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     |                                                      |
-| mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring |                                                      |
-| mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  |                                                      |
-| mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    |                                                      |
-| nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on node versions: 20, 22, and 24    |
-| opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                      |
-| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     |                                                      |
-| pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                      |
-| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                      |
-| redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                      |
-| saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   |                                                      |
-| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     |                                                      |
-| xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   |                                                      |
-| xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      |                                                      |
-| xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      |                                                      |
-| zip       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip      |                                                      |
+| Extension | Container                                                                | Notes                                                      |
+|-----------|--------------------------------------------------------------------------|------------------------------------------------------------|
+| amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     |                                                            |
+| bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   |                                                            |
+| composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer |                                                            |
+| curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     |                                                            |
+| datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  |                                                            |
+| gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       |                                                            |
+| intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     |                                                            |
+| mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring |                                                            |
+| mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  |                                                            |
+| mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    |                                                            |
+| nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on the oldest and active LTS node version |
+| opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                            |
+| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     |                                                            |
+| pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                            |
+| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                            |
+| redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                            |
+| saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   |                                                            |
+| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     |                                                            |
+| xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   |                                                            |
+| xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      |                                                            |
+| xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      |                                                            |
+| zip       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip      |                                                            |
 
 There are also some environment specific extensions available:
 
