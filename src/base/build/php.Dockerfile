@@ -32,6 +32,8 @@ RUN tee /etc/supervisor/supervisord.conf > /dev/null <<EOT
 [unix_http_server]
 file=/tmp/supervisor.sock
 chmod=0700
+username=henkdevries
+password=liever10indehand
 [supervisord]
 nodaemon=true
 logfile=/dev/stdout
