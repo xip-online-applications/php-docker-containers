@@ -46,6 +46,20 @@ To undo these dev settings, you can use the `ghcr.io/xip-online-applications/php
 
 Check the [example](./example) directory for a fully working example of the above within a multi-stage build.
 
+## Supervisor
+
+If you want to use Supervisor, just overwrite the CMD, like this
+
+```Dockerfile
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+```
+
+When you've written your very own Supervisor config, and you called it "worker.conf" for example, just do
+
+```Dockerfile
+COPY worker.conf /etc/supervisor/conf.d/worker.conf
+```
+
 ## Available extensions
 
 See the list of available extensions below:

@@ -33,6 +33,23 @@ RUN apt-get update && apt-get install -y \
   git zip unzip openssl bash libc6 supervisor \
   && apt-get clean
 
+RUN tee /etc/supervisor/supervisord.conf > /dev/null <<EOT
+[unix_http_server]
+file=/tmp/supervisor.sock
+chmod=0700
+[supervisord]
+nodaemon=true
+logfile=/dev/stdout
+logfile_maxbytes=0
+pidfile=/tmp/supervisord.pid
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock
+[include]
+files = /etc/supervisor/conf.d/*.conf
+EOT
+
 COPY --from=base /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 COPY --from=base /opt /opt
 COPY www.conf /usr/local/etc/php-fpm.d/xiponlineapplications.conf
