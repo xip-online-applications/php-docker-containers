@@ -39,7 +39,6 @@ jobs:
           - pcntl
           - pgsql
           - python
-          - python-supervisor
           - rdkafka
           - redis
           - saxonc
