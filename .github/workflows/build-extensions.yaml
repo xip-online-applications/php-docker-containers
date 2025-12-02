@@ -37,6 +37,9 @@ jobs:
           - opcache
           - pcov
           - pcntl
+          - pgsql
+          - python
+          - python-supervisor
           - rdkafka
           - redis
           - saxonc

@@ -28,7 +28,8 @@ RUN mkdir -p /tmp/lib64 \
   && cp `find /usr/lib -name libpng16.so.16` /tmp/lib64/ \
   && cp `find /usr/lib -name libjpeg.so.62` /tmp/lib64/ \
   && cp `find /usr/lib -name libfreetype.so.6` /tmp/lib64/ \
-  && cp `find /usr/lib \( -name libwebp.so.7 -o -name libwebp.so.6 \)` /tmp/lib64/
+  && cp `find /usr/lib \( -name libwebp.so.7 -o -name libwebp.so.6 \)` /tmp/lib64/ \
+  && cp `find /usr/lib -name libsharpyuv.so.0` /tmp/lib64/
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/

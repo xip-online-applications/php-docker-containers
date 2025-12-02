@@ -13,6 +13,11 @@ RUN mv `php-config --extension-dir`/intl.so /tmp/extensions/intl.so
 
 COPY ext-intl.ini /tmp/conf.d/ext-intl.ini
 
+USER root
+RUN mkdir -p /tmp/lib64 \
+  && cp -d `find /usr/lib -name "libicu*.so*"` /tmp/lib64/
+
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/
 COPY --from=ext /tmp/conf.d /opt/php/conf.d/
+COPY --from=ext /tmp/lib64 /opt/php/lib64/

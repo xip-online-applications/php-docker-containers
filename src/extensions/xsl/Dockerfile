@@ -15,7 +15,9 @@ RUN mkdir -p /tmp/extensions /tmp/conf.d \
 USER root
 RUN mkdir -p /tmp/lib64 \
   && cp `find /usr/lib -name libexslt.so.0` /tmp/lib64/ \
-  && cp `find /usr/lib -name libxslt.so.1` /tmp/lib64/
+  && cp `find /usr/lib -name libxslt.so.1` /tmp/lib64/ \
+  && cp `find /usr/lib -name libgcrypt.so.20` /tmp/lib64/ \
+  && cp `find /usr/lib -name libgpg-error.so.0` /tmp/lib64/
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/
