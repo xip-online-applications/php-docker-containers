@@ -1,49 +1,45 @@
 FROM debian:oldstable AS ext
 
-RUN apt update \
-  && apt install -y curl tar wget build-essential libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev \
-  && apt-get clean
+RUN apt-get update && apt-get install -y \
+    curl \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libncurses5-dev \
+    libreadline-dev \
+    libgdbm-dev \
+    libdb5.3-dev \
+    libbz2-dev \
+    libsqlite3-dev \
+    libffi-dev \
+    tk-dev \
+    liblzma-dev \
+    && apt-get clean
 
 RUN mkdir -p /opt/share/python /opt/bin
-
-# Choose least recent LTS version:
-# https://www.openssl.org/source/
-ARG OPENSSL_VERSION=3.5.4
-RUN curl -sS -o openssl.tar.gz "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" \
-  && tar -xzf openssl.tar.gz
-
-RUN cd openssl-$OPENSSL_VERSION \
-  && ./config --prefix=/opt/share --openssldir=/opt/share/openssl \
-  && make -j$(nproc) \
-  && make install
 
 # Choose latest security version:
 # https://www.python.org/downloads/
 # Also adjust in Makefile and python-supervisor/Makefile
 ARG VERSION=3.12.12
+
 RUN curl -sS -o python.tgz "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz" \
-  && tar -xzf python.tgz
-
-RUN cd Python-$VERSION \
-  && echo "_ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a" >> Modules/Setup \
-  && echo "_hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a" >> Modules/Setup
-
-RUN cd Python-$VERSION \
-  && export LDFLAGS="-L/opt/share/lib/ -L/opt/share/lib64/" \
-  && export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:-L/opt/share/lib/:-L/opt/share/lib64/" \
-  && export CPPFLAGS="-I/opt/share/include -I/opt/share/include/openssl" \
-  && ./configure --enable-optimizations --with-lto --with-ssl --prefix=/opt/share \
+  && tar -xzf python.tgz \
+  && cd Python-$VERSION \
+  && ./configure \
+    --enable-optimizations \
+    --with-lto \
+    --prefix=/opt \
+    --with-ensurepip=install \
   && make -j$(nproc) \
   && make install
 
-RUN ln -s /opt/share/bin/pydoc3 /opt/bin/pydoc3 \
-  && ln -s /opt/share/bin/python3 /opt/bin/python3 \
-  && ln -s /opt/share/bin/pip3 /opt/bin/pip3 \
-  && ln -s pydoc3 /opt/bin/pydoc \
-  && ln -s python3 /opt/bin/python \
-  && ln -s pip3 /opt/bin/pip
+RUN ln -s /opt/bin/python3 /opt/bin/python3 \
+  && ln -s /opt/bin/python3 /opt/bin/python \
+  && ln -s /opt/bin/pip3 /opt/bin/pip3 \
+  && ln -s /opt/bin/pip3 /opt/bin/pip \
+  && ln -s /opt/bin/pydoc3 /opt/bin/pydoc \
+  && ln -s /opt/bin/pydoc3 /opt/bin/pydoc3
 
-# The definitive build
 FROM scratch
-COPY --from=ext /opt/share/ /opt/share/
-COPY --from=ext /opt/bin/ /opt/bin/
+COPY --from=ext /opt/ /opt/
