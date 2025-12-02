@@ -29,6 +29,7 @@ jobs:
           - curl
           - datadog
           - gd
+          - imagick
           - intl
           - mbstring
           - mongodb

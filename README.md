@@ -72,6 +72,7 @@ See the list of available extensions below:
 | curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     |                                                            |
 | datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  |                                                            |
 | gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       |                                                            |
+| imagick   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick  |                                                            |
 | intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     |                                                            |
 | mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring |                                                            |
 | mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  |                                                            |

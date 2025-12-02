@@ -6,6 +6,7 @@ COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-curl:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-datadog:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-gd:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-intl:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-mbstring:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-mongodb:8.5 /opt /opt
