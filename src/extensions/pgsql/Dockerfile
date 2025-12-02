@@ -12,6 +12,10 @@ RUN cp `php-config --extension-dir`/pgsql.so /tmp/extensions/pgsql.so \
 
 COPY ext-pgsql.ini /tmp/conf.d/ext-pgsql.ini
 
-FROM scratch
-COPY --from=ext /tmp/extensions/ /opt/php/extensions/
-COPY --from=ext /tmp/conf.d/ /opt/php/conf.d/
+USER root
+RUN mkdir -p /tmp/lib64 \
+  && cp `find /usr/lib -name libpq.so.5` /tmp/lib64/ \
+  && cp `find /usr/lib -name libgssapi_krb5.so.2` /tmp/lib64/ \
+  && cp `find /usr/lib -name libldap*.so*` /tmp/lib64/ \
+  && cp `find /usr/lib -name liblber*.so*` /tmp/lib64/ \
+  && cp `find /usr/lib -name libsasl2.so.2` /tmp/lib64/
