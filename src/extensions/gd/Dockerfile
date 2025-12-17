@@ -32,7 +32,7 @@ RUN mkdir -p /tmp/lib64 && \
   find /usr/lib -name libfreetype.so.6 -exec cp {} /tmp/lib64/ \; && \
   [ -f /tmp/lib64/libfreetype.so.6 ] || { echo "Error: libfreetype.so.6 is missing"; exit 1; } && \
   find /usr/lib \( -name libwebp.so.7 -o -name libwebp.so.6 \) -exec cp {} /tmp/lib64/ \; && \
-  ( [ -f /tmp/lib64/libwebp.so.7 ] || [ -f /tmp/lib64/libwebp.so.6 ] ) || { echo "Error: libwebp.so is missing"; exit 1; } && \
+  ( [ -f /tmp/lib64/libwebp.so.7 ] || [ -f /tmp/lib64/libwebp.so.6 ] ) || { echo "Error: libwebp.so.* is missing"; exit 1; } && \
   find /usr/lib -name libsharpyuv.so.0 -exec cp {} /tmp/lib64/ \; && \
   [ -f /tmp/lib64/libsharpyuv.so.0 ] || { echo "Error: libsharpyuv.so.0 is missing"; exit 1; }
 
