@@ -4,14 +4,18 @@ include common.Makefile
 DEV_BUILD_VERSION := 8.5
 
 prepare:
-	#sudo apt-get update && sudo apt-get install -y qemu-user-static binfmt-support make
-	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-	docker buildx create --platform "linux/amd64,linux/arm64" --use
+	docker buildx inspect php-builder >/dev/null 2>&1 || docker buildx create --name php-builder --platform "linux/amd64,linux/arm64" --driver docker-container --use
+	docker buildx use php-builder
+	docker buildx inspect --bootstrap
+
+reset-builder:
+	docker buildx rm php-builder || true
+	$(MAKE) prepare
 
 docker-login:
 	echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_USER} --password-stdin
 
-all:
+all: prepare
 	$(MAKE) base RELEASE=$(RELEASE) REPO=$(REPO)
 	$(MAKE) extensions RELEASE=$(RELEASE) REPO=$(REPO)
 
