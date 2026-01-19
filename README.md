@@ -104,7 +104,7 @@ First you need to prepare your local environment by preparing buildx:
 docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
 ```
 
-Also authorize to the Github registry with your Github PAT:
+Also authorize to the Github registry:
 
 ```shell
 gh auth token | docker login ghcr.io -u $(gh api user -q .login) --password-stdin
