@@ -1,2 +1,2 @@
 # https://hub.docker.com/_/php
-FROM php:8.4.15-fpm-bookworm
+FROM php:8.4.17-fpm-bookworm
