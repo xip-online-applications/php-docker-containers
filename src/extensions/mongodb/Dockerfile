@@ -6,13 +6,13 @@ RUN apt-get update && apt-get install -y libssl-dev \
   && apt-get clean
 
 WORKDIR /tmp
-RUN pecl bundle mongodb \
-  && cd mongodb \
-  && phpize \
-  && ./configure --enable-mongodb \
-  && make -j$(nproc) \
-  && make install \
-  && docker-php-ext-enable mongodb
+RUN pecl bundle mongodb && \
+  cd mongodb && \
+  phpize && \
+  ./configure --enable-mongodb && \
+  make -j$(nproc) && \
+  make install && \
+  docker-php-ext-enable mongodb
 
 RUN mkdir -p /tmp/extensions && mkdir -p /tmp/conf.d
 RUN cp `php-config --extension-dir`/mongodb.so /tmp/extensions/mongodb.so && \
