@@ -18,8 +18,8 @@ RUN mv `php-config --extension-dir`/amqp.so /tmp/extensions/amqp.so
 RUN echo "extension=/opt/php/extensions/amqp.so" >> /tmp/conf.d/ext-amqp.ini
 
 USER root
-RUN mkdir -p /tmp/lib64 \
-  && cp `find /usr/lib -name librabbitmq.so.4` /tmp/lib64/
+RUN mkdir -p /tmp/lib64 && \
+  cp `find /usr/lib -name librabbitmq.so.4` /tmp/lib64/
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/

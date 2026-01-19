@@ -107,7 +107,7 @@ docker buildx create --name php-docker-containers --use --bootstrap --platform l
 Also authorize to the Github registry with your Github PAT:
 
 ```shell
-echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+gh auth token | docker login ghcr.io -u $(gh api user -q .login) --password-stdin
 ```
 
 To develop a new extension, you need to make sure you do the following:
