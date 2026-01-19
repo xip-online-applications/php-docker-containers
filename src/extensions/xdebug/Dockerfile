@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y git \
   && apt-get clean
 
 RUN pecl install xdebug-${XDEBUG_VERSION} && \
-    docker-php-ext-enable xdebug
+  docker-php-ext-enable xdebug
 
 COPY ext-xdebug.ini /tmp/ext-xdebug.ini
 

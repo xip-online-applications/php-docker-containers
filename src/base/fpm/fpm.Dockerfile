@@ -24,10 +24,10 @@ ENV LD_LIBRARY_PATH=$TM_PHP_LIB_DIR
 RUN echo $TM_PHP_LIB_DIR >> /etc/ld.so.conf.d/php.conf
 
 RUN mkdir -p \
-    $TM_PHP_BIN_DIR \
-    $TM_PHP_CONF_DIR \
-    $TM_PHP_EXTENSION_DIR \
-    $TM_PHP_LIB_DIR
+  $TM_PHP_BIN_DIR \
+  $TM_PHP_CONF_DIR \
+  $TM_PHP_EXTENSION_DIR \
+  $TM_PHP_LIB_DIR
 
 RUN apt-get update && apt-get install -y \
   git zip unzip openssl bash libc6 supervisor \

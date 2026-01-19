@@ -4,17 +4,17 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 
 # Install dependencies with apt-get
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libgmp-dev \
-    libwebp-dev \
-    libfreetype6-dev \
-    lsb-release
+  libpng-dev \
+  libjpeg-dev \
+  libgmp-dev \
+  libwebp-dev \
+  libfreetype6-dev \
+  lsb-release
 
 RUN if [ "$(lsb_release -sc)" = "bookworm" ]; then echo "deb http://deb.debian.org/debian bookworm-backports main" > /etc/apt/sources.list.d/bookworm-backports.list; apt-get update && apt-get install -y -t bookworm-backports libsharpyuv0; \
-    else apt-get install -y libsharpyuv0; \
-    fi \
-    && apt-get clean
+  else apt-get install -y libsharpyuv0; \
+  fi \
+  && apt-get clean
 
 # Configure and install GMP
 RUN docker-php-ext-configure gmp && docker-php-ext-install gmp
@@ -40,7 +40,7 @@ RUN mkdir -p /tmp/lib64 && \
   [ -f /tmp/lib64/libgmp.so.10 ] || { echo "Error: libgmp.so.10 is missing"; exit 1; } && \
   find /usr/lib \( -name libwebp.so.7 -o -name libwebp.so.6 \) -exec cp {} /tmp/lib64/ \; && \
   ( [ -f /tmp/lib64/libwebp.so.7 ] || \
-    [ -f /tmp/lib64/libwebp.so.6 ] ) || { echo "Error: libwebp.so.* is missing"; exit 1; } && \
+  [ -f /tmp/lib64/libwebp.so.6 ] ) || { echo "Error: libwebp.so.* is missing"; exit 1; } && \
   find /usr/lib -name libsharpyuv.so.0 -exec cp {} /tmp/lib64/ \; && \
   [ -f /tmp/lib64/libsharpyuv.so.0 ] || { echo "Error: libsharpyuv.so.0 is missing"; exit 1; }
 
