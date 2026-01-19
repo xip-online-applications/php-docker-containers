@@ -5,7 +5,7 @@
 
 It is a lot of work to build PHP containers over and over again, let alone the wait for containers to build. This project makes that life easier by providing fully reusable PHP base containers and extensions.
 
-The main idea behind this project is based on the [Bref](https://github.com/brefphp/bref) development containers. This project provides a base [PHP or PHP-FPM container](https://github.com/xip-online-applications/php-docker-containers/pkgs/container/php-docker-containers%2Fphp) and many prebuild extensions. All you have to do, is combine them into your own project.
+The main idea behind this project is based on the [Bref](https://github.com/brefphp/bref) development containers. This project provides a base [PHP or PHP-FPM container](https://github.com/xip-online-applications/php-docker-containers/pkgs/container/php-docker-containers%2Fphp) and many prebuild extensions. All you have to do, is combine them into your project.
 
 ## Supported PHP versions
 
@@ -18,7 +18,7 @@ This project follows the [PHP supported versions](https://www.php.net/supported-
 | 8.4         | 31 December 2026 | 31 December 2028     |
 | 8.5         | 31 December 2027 | 31 December 2029     |
 
-Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained anymore.
+Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained any more.
 
 ## How to use
 
@@ -28,7 +28,7 @@ Using this project is fairly easy. You start your Dockerfile with the base conta
 FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.5-fpm
 ```
 
-Now lets say you want to use the extensions MySQL and Redis. Each extension lives in its ow registry like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
+Now, let's say you want to use the extensions MySQL and Redis. Each extension lives in its own registry like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
 
 ```Dockerfile
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.5 /opt /opt
@@ -47,7 +47,7 @@ Check the [example](./example) directory for a fully working example of the abov
 
 ## Supervisor
 
-If you want to use Supervisor, just overwrite the CMD, like this
+If you intend to use Supervisor, just overwrite the CMD, like this
 
 ```Dockerfile
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
@@ -98,7 +98,7 @@ There are also some environment specific extensions available:
 
 ## Development
 
-First you need to prepare your local environment by preparing buildx:
+First, you need to prepare your local environment by preparing buildx:
 
 ```shell
 docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
@@ -131,7 +131,7 @@ This will build the extension with `DEV_BUILD_VERSION` defaulted to the lowest w
 make dev-extension-<EXTENSION> DEV_BUILD_VERSION=8.3 
 ```
 
-To make debugging easier, you can add `exit 1` to your RUN line to list the real command response like this to your Dockerfile to search for paths:
+To make debugging easier, you can add `exit 1` to your RUN line to list the real command response, like this to your Dockerfile to search for paths:
 
 ```Dockerfile
 RUN cd `php-config --extension-dir` && \
