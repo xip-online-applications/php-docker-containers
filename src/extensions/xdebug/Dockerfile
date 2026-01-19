@@ -7,16 +7,8 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 RUN apt-get update && apt-get install -y git \
   && apt-get clean
 
-RUN if [ $(php -r "echo PHP_VERSION_ID;") -ge 80500 ]; then \
-    git clone --branch master --depth 1 https://github.com/xdebug/xdebug.git /usr/src/php/ext/xdebug \
-    && docker-php-ext-install xdebug; \
-  elif [ $(php -r "echo PHP_VERSION_ID;") -ge 80100 ]; then \
-    pecl install xdebug-3.4.7 \
-    && docker-php-ext-enable xdebug; \
-  else \
-    pecl install xdebug-3.1.5 \
-    && docker-php-ext-enable xdebug; \
-  fi
+RUN pecl install xdebug-3.5.0 && \
+    docker-php-ext-enable xdebug
 
 COPY ext-xdebug.ini /tmp/ext-xdebug.ini
 
