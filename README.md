@@ -11,14 +11,14 @@ The main idea behind this project is based on the [Bref](https://github.com/bref
 
 This project follows the [PHP supported versions](https://www.php.net/supported-versions.php) and supports the following PHP versions:
 
-| PHP Version | Supported until  | Security fixes until |
-|-------------|------------------|----------------------|
-| 8.2         | 31 December 2024 | 31 December 2026     |
-| 8.3         | 31 December 2025 | 31 December 2027     |
-| 8.4         | 31 December 2026 | 31 December 2028     |
-| 8.5         | 31 December 2027 | 31 December 2029     |
+| PHP Version | Removing after   |
+|-------------|------------------|
+| 8.2         | 31 December 2026 |
+| 8.3         | 31 December 2027 |
+| 8.4         | 31 December 2028 |
+| 8.5         | 31 December 2029 |
 
-Containers still exist for PHP 7.4 and 8.0, but they are not actively maintained any more.
+Containers still exist for older PHP versions (until we run out of disk space), but they are not actively maintained any more.
 
 ## How to use
 
@@ -28,7 +28,7 @@ Using this project is fairly easy. You start your Dockerfile with the base conta
 FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.5-fpm
 ```
 
-Now, let's say you want to use the extensions MySQL and Redis. Each extension lives in its own registry like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
+Now, let's say you want to use the extensions MySQL and Redis. Each extension lives in its registry, like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
 
 ```Dockerfile
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.5 /opt /opt
@@ -65,33 +65,32 @@ See the list of available extensions below:
 
 | Extension | Container                                                                | Notes                                                         |
 |-----------|--------------------------------------------------------------------------|---------------------------------------------------------------|
-| amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     |                                                               |
-| bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   |                                                               |
-| composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer |                                                               |
-| curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     |                                                               |
-| datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  |                                                               |
-| gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       |                                                               |
-| imagick   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick  |                                                               |
-| intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     |                                                               |
-| mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring |                                                               |
-| mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  |                                                               |
-| mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    |                                                               |
-| nodejs    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-nodejs   | Versioning based on the oldest and active LTS Node.js version |
-| opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  |                                                               |
-| pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    |                                                               |
-| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     |                                                               |
-| pgsql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pgsql    |                                                               |
-| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  |                                                               |
-| redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    |                                                               |
-| saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   |                                                               |
-| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     |                                                               |
-| sockets   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-sockets  |                                                               |
-| xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   |                                                               |
-| xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      |                                                               |
-| xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      |                                                               |
-| zip       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip      |                                                               |
+| amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     | Connect to AMQP compatible servers like RabbitMQ              |
+| bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   | Arbitrary precision mathematics                               |
+| composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer | Dependency Manager for PHP                                    |
+| curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     | Client URL Library                                            |
+| datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  | Datadog APM tracing                                           |
+| gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       | Image processing                                              |
+| imagick   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick  | Image processing using ImageMagick                            |
+| intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     | Internationalization functions                                |
+| mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring | Multibyte string support                                      |
+| mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  | MongoDB and DocumentDB driver                                 |
+| mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    | MySQL and MariaDB driver                                      |
+| opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  | OPcode cache                                                  |
+| pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    | Process Control functions                                     |
+| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     | Code coverage driver                                          |
+| pgsql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pgsql    | PostgreSQL driver                                             |
+| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  | Kafka client based on librdkafka                              |
+| redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    | Redis and Valkey client                                       |
+| saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   | Saxon/C XSLT, XPath, and XQuery processor                     |
+| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     | SOAP protocol support                                         |
+| sockets   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-sockets  | Low-level socket functions                                    |
+| xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   | Debugger and profiler                                         |
+| xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      | XML parsing and manipulation                                  |
+| xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      | XSL transformation                                            |
+| zip       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip      | Zip archive handling                                          |
 
-There are also some environment specific extensions available:
+There are also some environment-specific extensions available:
 
 | Extension | Container                                                            | Notes                                                 |
 |-----------|----------------------------------------------------------------------|-------------------------------------------------------|
@@ -106,7 +105,7 @@ First, you need to prepare your local environment by preparing buildx:
 docker buildx create --name php-docker-containers --use --bootstrap --platform linux/amd64,linux/arm64 --driver docker-container
 ```
 
-Also authorize to the Github registry:
+Also authorize to the GitHub registry:
 
 ```shell
 gh auth token | docker login ghcr.io -u $(gh api user -q .login) --password-stdin

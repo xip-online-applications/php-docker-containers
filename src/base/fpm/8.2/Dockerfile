@@ -1,2 +1,2 @@
-# https://hub.docker.com/_/php
+# https://hub.docker.com/_/php/tags?name=8.2
 FROM php:8.2.30-fpm-bookworm

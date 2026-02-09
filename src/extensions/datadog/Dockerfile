@@ -5,7 +5,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 #VERSION
 # https://github.com/DataDog/dd-trace-php/releases
 # https://docs.datadoghq.com/tracing/trace_collection/compatibility/php/
-ARG DATADOG_TRACING_VERSION=1.15.2
+ARG DATADOG_TRACING_VERSION=1.16.0
 
 # Download and install
 RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php" --output /tmp/datadog-setup.php && \
