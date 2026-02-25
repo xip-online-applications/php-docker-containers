@@ -2,13 +2,11 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-#VERSION
 # https://github.com/DataDog/dd-trace-php/releases
 # https://docs.datadoghq.com/tracing/trace_collection/compatibility/php/
-ARG DATADOG_TRACING_VERSION=1.15.2
 
 # Download and install
-RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_TRACING_VERSION}/datadog-setup.php" --output /tmp/datadog-setup.php && \
+RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php" --output /tmp/datadog-setup.php && \
   php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling
 
 # Copy all files
