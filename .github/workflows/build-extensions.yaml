@@ -34,7 +34,6 @@ jobs:
           - mbstring
           - mongodb
           - mysql
-          - nodejs
           - opcache
           - pcov
           - pcntl

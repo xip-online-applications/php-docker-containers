@@ -11,7 +11,6 @@ COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-mbstring:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-mongodb:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-mysql:8.5 /opt /opt
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-nodejs:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-opcache:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-pcov:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-pcntl:8.5 /opt /opt
