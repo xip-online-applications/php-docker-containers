@@ -35,8 +35,8 @@ jobs:
           - mongodb
           - mysql
           - opcache
-          - pcov
           - pcntl
+          - pcov
           - pgsql
           - rdkafka
           - redis

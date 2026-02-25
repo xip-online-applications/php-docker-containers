@@ -1,8 +1,8 @@
 include common.Makefile
 .PHONY: build ext-%
 
-build: ext-amqp ext-bcmath ext-composer ext-curl ext-datadog ext-gd ext-intl ext-mbstring ext-mongodb ext-mysql ext-opcache ext-pcov ext-pcntl ext-pgsql ext-redis ext-soap ext-saxonc ext-xdebug ext-xml ext-xsl ext-zip ext-sockets ext-kafka
-	echo "Done building all extensions!"
+build: ext-amqp ext-bcmath ext-composer ext-curl ext-datadog ext-gd ext-imagick ext-intl ext-mbstring ext-mongodb ext-mysql ext-opcache ext-pcntl ext-pcov ext-pgsql ext-rdkafka ext-redis ext-saxonc ext-soap ext-sockets ext-xdebug ext-xml ext-xsl ext-zip
+	echo "Done building all extensions..."
 
 ext-%:
 	cd $* ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
