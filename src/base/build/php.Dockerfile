@@ -23,7 +23,7 @@ RUN echo $TM_PHP_LIB_DIR >> /etc/ld.so.conf.d/php.conf \
       $TM_PHP_EXTENSION_DIR \
       $TM_PHP_LIB_DIR \
     && apt-get update && apt-get install -y \
-      git zip unzip openssl bash libc6 supervisor \
+      git zip unzip openssl bash libc6 supervisor jq \
     && apt-get clean
 
 RUN tee /etc/supervisor/supervisord.conf > /dev/null <<EOT
