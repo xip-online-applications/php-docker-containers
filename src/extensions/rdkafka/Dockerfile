@@ -4,7 +4,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 
 #VERSION
 # https://github.com/confluentinc/librdkafka/releases
-ARG LIBRDKAFKA_VERSION="v2.13.0"
+ARG LIBRDKAFKA_VERSION="v2.13.2"
 
 RUN apt-get update \
   && apt-get install -y build-essential git libsasl2-dev libssl-dev zlib1g-dev \
