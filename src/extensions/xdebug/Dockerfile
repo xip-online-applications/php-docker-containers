@@ -5,7 +5,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 #VERSION
 # https://pecl.php.net/package/xdebug
 # https://xdebug.org/docs/compat
-ARG XDEBUG_VERSION=3.5.0
+ARG XDEBUG_VERSION=3.5.1
 
 RUN apt-get update && apt-get install -y git \
   && apt-get clean
