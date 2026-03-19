@@ -7,7 +7,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 
 # Download and install
 RUN curl -sSL "https://github.com/DataDog/dd-trace-php/releases/latest/download/datadog-setup.php" --output /tmp/datadog-setup.php && \
-  php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling
+  php /tmp/datadog-setup.php --php-bin all --install-dir /opt/share/datadog/ --enable-profiling --enable-appsec
 
 # Copy all files
 RUN mkdir -p /opt/extension && mkdir -p /opt/conf.d
