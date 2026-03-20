@@ -17,16 +17,12 @@ RUN cp "$(php-config --extension-dir)/ddappsec.so" ./ | true
 RUN cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true
 
 WORKDIR /opt/conf.d
-RUN set -e; \
-  for INI in \
-    "/usr/local/etc/php/conf.d/98-ddtrace.ini" \
-    "/opt/php/conf.d/98-ddtrace.ini"; do \
-    if [ -f "$INI" ]; then \
-      cp "$INI" ext-datadog.ini; \
-      break; \
-    fi; \
-  done; \
-  if [ ! -f ext-datadog.ini ]; then \
+
+RUN apt-get update && apt-get install -y locate && apt-get clean \
+  && updatedb \
+  && WHERE98DDTRACE=$(locate 98-ddtrace.ini | head -n 1) \
+  && cp "$WHERE98DDTRACE" ext-datadog.ini \
+  && if [ ! -f ext-datadog.ini ]; then \
     echo "Error: Could not find datadog ini file" >&2; \
     exit 1; \
   fi
