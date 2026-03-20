@@ -1,6 +1,7 @@
 FROM ghcr.io/xip-online-applications/php-docker-containers/php-dev:8.5-fpm AS base
 
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-amqp:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-apcu:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-bcmath:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-composer:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-curl:8.5 /opt /opt
