@@ -66,6 +66,7 @@ See the list of available extensions below:
 | Extension | Container                                                                | Notes                                                         |
 |-----------|--------------------------------------------------------------------------|---------------------------------------------------------------|
 | amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     | Connect to AMQP compatible servers like RabbitMQ              |
+| apcu      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-apcu     | In-memory key-value store for caching user data               |
 | bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   | Arbitrary precision mathematics                               |
 | composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer | Dependency Manager for PHP                                    |
 | curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     | Client URL Library                                            |
