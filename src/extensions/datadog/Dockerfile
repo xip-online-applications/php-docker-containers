@@ -17,15 +17,22 @@ RUN cp "$(php-config --extension-dir)/ddappsec.so" ./ | true
 RUN cp "$(php-config --extension-dir)/datadog-profiling.so" ./ | true
 
 WORKDIR /opt/conf.d
-RUN cp "/usr/local/etc/php/conf.d:/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
-  && cp "/opt/php/conf.d:/usr/local/etc/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
-  && cp "/usr/local/etc/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
-  && cp "/opt/php/conf.d/98-ddtrace.ini" ext-datadog.ini | true \
-  && test -f ext-datadog.ini
+RUN set -e; \
+  for INI in \
+    "/usr/local/etc/php/conf.d/98-ddtrace.ini" \
+    "/opt/php/conf.d/98-ddtrace.ini"; do \
+    if [ -f "$INI" ]; then \
+      cp "$INI" ext-datadog.ini; \
+      break; \
+    fi; \
+  done; \
+  if [ ! -f ext-datadog.ini ]; then \
+    echo "Error: Could not find datadog ini file" >&2; \
+    exit 1; \
+  fi
 
 # Fix the datadog ini file
-RUN sed -i 's|extension = |extension = /opt/php/extensions/|g' ext-datadog.ini \
-  && sed -i 's|datadog.profiling.enabled = 1|datadog.profiling.enabled = 0|g' ext-datadog.ini
+RUN sed -i 's|extension = |extension = /opt/php/extensions/|g' ext-datadog.ini
 
 # The definitive build
 FROM scratch
