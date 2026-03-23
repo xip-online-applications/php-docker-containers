@@ -24,6 +24,7 @@ jobs:
       matrix:
         extension:
           - amqp
+          - apcu
           - bcmath
           - composer
           - curl
