@@ -10,7 +10,7 @@ ARG XDEBUG_VERSION=3.5.1
 RUN apt-get update && apt-get install -y git \
   && apt-get clean
 
-RUN pecl install xdebug-${XDEBUG_VERSION} && \
+RUN MAKE="make -j$(nproc)" pecl install xdebug-${XDEBUG_VERSION} && \
   docker-php-ext-enable xdebug
 
 COPY ext-xdebug.ini /tmp/ext-xdebug.ini

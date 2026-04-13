@@ -14,8 +14,8 @@ RUN if [ $(php -r "echo PHP_VERSION_ID;") -ge 80500 ]; then \
     docker-php-ext-configure redis --enable-redis-igbinary && \
     docker-php-ext-install redis; \
   else \
-    pecl install igbinary && \
-    pecl install -D 'enable-redis-igbinary="yes"' redis; \
+    MAKE="make -j$(nproc)" pecl install igbinary && \
+    MAKE="make -j$(nproc)" pecl install -D 'enable-redis-igbinary="yes"' redis; \
   fi
 
 RUN cp `php-config --extension-dir`/igbinary.so /tmp/igbinary.so && \

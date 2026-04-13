@@ -18,7 +18,7 @@ WORKDIR /tmp/librdkafka
 RUN ./configure \
   && make \
   && make install \
-  && pecl install rdkafka \
+  && MAKE="make -j$(nproc)" pecl install rdkafka \
   && docker-php-ext-enable rdkafka
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
