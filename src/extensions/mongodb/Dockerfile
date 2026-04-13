@@ -6,7 +6,7 @@ RUN apt-get update \
   && apt-get install -y libssl-dev \
   && apt-get clean
 
-RUN pecl install -D "enable-mongodb-developer-flags=\"no\" \
+RUN MAKE="make -j$(nproc)" pecl install -D "enable-mongodb-developer-flags=\"no\" \
 enable-mongodb-coverage=\"no\" \
 with-mongodb-system-libs=\"no\" \
 with-mongodb-client-side-encryption=\"auto\" \

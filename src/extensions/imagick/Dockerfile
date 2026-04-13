@@ -4,7 +4,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && apt-get clean
 
-RUN pecl install imagick && docker-php-ext-enable imagick
+RUN MAKE="make -j$(nproc)" pecl install imagick && docker-php-ext-enable imagick
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
 RUN cp `php-config --extension-dir`/imagick.so /tmp/extensions/imagick.so

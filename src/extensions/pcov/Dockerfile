@@ -3,7 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 # https://pecl.php.net/package/pcov
-RUN pecl install pcov
+RUN MAKE="make -j$(nproc)" pecl install pcov
 
 COPY ext-pcov.ini /tmp/ext-pcov.ini
 

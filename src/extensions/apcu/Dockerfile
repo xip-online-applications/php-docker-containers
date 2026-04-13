@@ -6,7 +6,7 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 # https://github.com/krakjoe/apcu
 
 RUN docker-php-source extract && \
-  pecl install --configureoptions 'enable-apcu-debug="no"' apcu && \
+  MAKE="make -j$(nproc)" pecl install --configureoptions 'enable-apcu-debug="no"' apcu && \
   docker-php-ext-enable apcu
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
