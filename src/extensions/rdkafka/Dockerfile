@@ -2,17 +2,13 @@ ARG REPO
 ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
-#VERSION
-# https://github.com/confluentinc/librdkafka/releases
-ARG LIBRDKAFKA_VERSION="v2.14.0"
-
 RUN apt-get update \
   && apt-get install -y build-essential git libsasl2-dev libssl-dev zlib1g-dev \
   && apt-get clean
 
 WORKDIR /tmp
 
-RUN git clone --branch "${LIBRDKAFKA_VERSION}" --depth 1 https://github.com/confluentinc/librdkafka.git
+RUN git clone --branch master --depth 1 https://github.com/confluentinc/librdkafka.git
 
 WORKDIR /tmp/librdkafka
 RUN ./configure \
