@@ -12,8 +12,9 @@ RUN echo "extension=/opt/php/extensions/imagick.so" | tee /tmp/conf.d/ext-imagic
 
 USER root
 RUN mkdir -p /tmp/lib64 \
-  && cp -d `find /usr/lib -name "libMagick*.so*"` /tmp/lib64/ \
-  && cp -d `find /usr/lib -name "libgomp.so*"` /tmp/lib64/
+  && { ldd /tmp/extensions/imagick.so; find /usr/lib -name "libMagick*.so*" -exec ldd {} +; } 2>/dev/null \
+     | grep '=> /' | awk '{print $3}' | sort -u \
+     | while read lib; do cp -dL "$lib" /tmp/lib64/ 2>/dev/null || true; done
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/
