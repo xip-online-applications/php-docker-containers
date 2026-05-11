@@ -4,11 +4,11 @@ FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && apt-get clean
 
-RUN MAKE="make -j$(nproc)" pecl install imagick && docker-php-ext-enable imagick
+RUN MAKE="make -j$(nproc)" pecl install --configureoptions 'with-imagick="autodetect"' imagick && docker-php-ext-enable imagick
 
 RUN mkdir -p /tmp/extensions /tmp/conf.d
 RUN cp `php-config --extension-dir`/imagick.so /tmp/extensions/imagick.so
-RUN cp /usr/local/etc/php/conf.d/docker-php-ext-imagick.ini /tmp/conf.d/ext-imagick.ini
+RUN echo "extension=/opt/php/extensions/imagick.so" | tee /tmp/conf.d/ext-imagick.ini
 
 USER root
 RUN mkdir -p /tmp/lib64 \
