@@ -20,6 +20,8 @@ ENV TM_PHP_LIB_DIR=/opt/php/lib64
 ENV PHP_INI_SCAN_DIR=$TM_PHP_CONF_DIR:/usr/local/etc/php/conf.d
 ENV PATH=$PATH:$TM_PHP_BIN_DIR
 ENV LD_LIBRARY_PATH=$TM_PHP_LIB_DIR
+ENV MAGICK_CONFIGURE_PATH=/opt/share/ImageMagick-7
+ENV MAGICK_CODER_MODULE_PATH=/opt/lib/im-coders
 
 RUN echo $TM_PHP_LIB_DIR >> /etc/ld.so.conf.d/php.conf \
     && mkdir -p \
