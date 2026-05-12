@@ -20,6 +20,11 @@ on:
       token:
         required: true
 
+concurrency:
+  group: build-${{ inputs.name }}
+  queue: max
+  cancel-in-progress: false
+
 jobs:
   container:
     name: build ${{ inputs.name }}

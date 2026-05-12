@@ -23,6 +23,9 @@ EOF
 RUN chmod +x /tmp/bin/gs
 RUN cp -a /usr/share/ghostscript/. /tmp/share/ghostscript/
 RUN cp -a /usr/share/fonts/. /tmp/share/fonts/
+RUN for dir in /etc/ImageMagick-*; do \
+		[ -d "$dir" ] && cp -a "$dir" /tmp/share/; \
+	done
 
 RUN mkdir -p /tmp/lib64 \
 	&& { \
@@ -33,6 +36,9 @@ RUN mkdir -p /tmp/lib64 \
 		} 2>/dev/null \
 		| grep '=> /' | awk '{print $3}' | sort -u \
 		| while read lib; do cp -dL "$lib" /tmp/lib64/ 2>/dev/null || true; done
+RUN for dir in /usr/lib/*/ImageMagick-*; do \
+		[ -d "$dir" ] && cp -a "$dir" /tmp/lib64/; \
+	done
 
 FROM scratch
 COPY --from=ext /tmp/extensions/ /opt/php/extensions/
