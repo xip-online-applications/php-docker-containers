@@ -3,7 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update \
-	&& apt-get install -y libmagickwand-dev ghostscript --no-install-recommends \
+	&& apt-get install -y libmagickwand-dev ghostscript \
 	&& apt-get clean
 
 RUN MAKE="make -j$(nproc)" \
@@ -22,12 +22,8 @@ exec /opt/bin/gs.real "\$@"
 EOF
 RUN chmod +x /tmp/bin/gs
 RUN cp -a /usr/share/ghostscript/. /tmp/share/ghostscript/ \
-	&& ICC_LINK=$(find /tmp/share/ghostscript -name iccprofiles -type l) \
-	&& if [ -n "$ICC_LINK" ]; then \
-		ICC_TARGET=$(readlink -f "$ICC_LINK") \
-		&& rm "$ICC_LINK" \
-		&& cp -a "$ICC_TARGET" "$ICC_LINK"; \
-	fi
+	&& find /tmp/share/ghostscript -name iccprofiles -type l -exec sh -c \
+		'target=$(realpath /usr/share/ghostscript/*/iccprofiles) && rm "$1" && cp -a "$target" "$1"' _ {} \;
 RUN cp -a /usr/share/fonts/. /tmp/share/fonts/
 RUN for dir in /etc/ImageMagick-*; do \
 		[ -d "$dir" ] && cp -a "$dir" /tmp/share/; \
