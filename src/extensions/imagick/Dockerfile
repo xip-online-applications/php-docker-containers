@@ -21,7 +21,13 @@ export GS_LIB="/opt/share/ghostscript/${GS_VERSION}/lib:/opt/share/ghostscript/$
 exec /opt/bin/gs.real "\$@"
 EOF
 RUN chmod +x /tmp/bin/gs
-RUN cp -aL /usr/share/ghostscript/. /tmp/share/ghostscript/
+RUN cp -a /usr/share/ghostscript/. /tmp/share/ghostscript/ \
+	&& ICC_LINK=$(find /tmp/share/ghostscript -name iccprofiles -type l) \
+	&& if [ -n "$ICC_LINK" ]; then \
+		ICC_TARGET=$(readlink -f "$ICC_LINK") \
+		&& rm "$ICC_LINK" \
+		&& cp -a "$ICC_TARGET" "$ICC_LINK"; \
+	fi
 RUN cp -a /usr/share/fonts/. /tmp/share/fonts/
 RUN for dir in /etc/ImageMagick-*; do \
 		[ -d "$dir" ] && cp -a "$dir" /tmp/share/; \
