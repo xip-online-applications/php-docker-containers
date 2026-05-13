@@ -8,6 +8,11 @@ FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.5-fpm AS develo
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.5 /opt /opt
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis:8.5 /opt /opt
 
+# Add Imagick for PDF/image rendering.
+# Note: besides /opt, copy /etc/fonts so fontconfig defaults are available at runtime.
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /etc/fonts /etc/fonts
+
 # Require Composer
 COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer:8.5 /opt /opt
 

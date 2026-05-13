@@ -43,6 +43,27 @@ COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-dev:
 
 To undo these dev settings, you can use the `ghcr.io/xip-online-applications/php-docker-containers/php-extra-prod` AFTER the dev extension.
 
+### Extensions with files outside `/opt`
+
+Most extensions are consumed by copying only `/opt`. Some extensions can also ship required runtime files outside `/opt`.
+
+For PDF/image rendering with Imagick + Ghostscript, copy both `/opt` and `/etc/fonts` from the Imagick extra image:
+
+```Dockerfile
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /etc/fonts /etc/fonts
+```
+
+If you use the development variant:
+
+```Dockerfile
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.5 /etc/fonts /etc/fonts
+```
+
+Why: `fontconfig` loads default runtime config from `/etc/fonts` (`fonts.conf` + `conf.d`).
+Without these files, rendering may still run but produce font mapping issues in PDF-to-image conversion.
+
 Check the [example](./example) directory for a fully working example of the above within a multi-stage build.
 
 ## Supervisor
