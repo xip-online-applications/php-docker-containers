@@ -3,7 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update \
-	&& apt-get install -y libmagickwand-dev ghostscript fontconfig fonts-noto-color-emoji \
+	&& apt-get install -y libmagickwand-dev ghostscript \
 	&& apt-get clean
 
 RUN MAKE="make -j$(nproc)" \
