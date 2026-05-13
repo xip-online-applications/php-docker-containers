@@ -25,6 +25,7 @@ RUN cp -a /usr/share/ghostscript/. /tmp/share/ghostscript/ \
 	&& find /tmp/share/ghostscript -name iccprofiles -type l -exec sh -c \
 		'target=$(realpath /usr/share/ghostscript/*/iccprofiles) && rm "$1" && cp -a "$target" "$1"' _ {} \;
 RUN cp -a /usr/share/fonts/. /tmp/share/fonts/
+RUN if [ -d /usr/share/poppler ]; then cp -a /usr/share/poppler /tmp/share/poppler; fi
 RUN if [ -f /etc/fonts/fonts.conf ]; then cp /etc/fonts/fonts.conf /tmp/etc/fonts/fonts.conf; fi
 RUN echo '<?xml version="1.0"?>\n<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">\n<fontconfig>\n  <dir>/opt/share/fonts</dir>\n</fontconfig>' > /tmp/etc/fonts/conf.d/01-opt-share-fonts.conf
 RUN for dir in /etc/ImageMagick-*; do \
