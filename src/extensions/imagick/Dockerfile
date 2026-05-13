@@ -10,7 +10,7 @@ RUN MAKE="make -j$(nproc)" \
 	pecl install --configureoptions 'with-imagick="autodetect"' imagick \
 	&& docker-php-ext-enable imagick
 
-RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/bin /tmp/share/ghostscript /tmp/share/fonts /tmp/lib /tmp/etc/fonts
+RUN mkdir -p /tmp/extensions /tmp/conf.d /tmp/bin /tmp/share/ghostscript /tmp/share/fonts /tmp/lib /tmp/etc/fonts /tmp/etc/fonts/conf.d
 RUN cp `php-config --extension-dir`/imagick.so /tmp/extensions/imagick.so
 RUN echo "extension=/opt/php/extensions/imagick.so" | tee /tmp/conf.d/ext-imagick.ini
 RUN cp /usr/bin/gs /tmp/bin/gs.real
@@ -26,6 +26,7 @@ RUN cp -a /usr/share/ghostscript/. /tmp/share/ghostscript/ \
 		'target=$(realpath /usr/share/ghostscript/*/iccprofiles) && rm "$1" && cp -a "$target" "$1"' _ {} \;
 RUN cp -a /usr/share/fonts/. /tmp/share/fonts/
 RUN if [ -f /etc/fonts/fonts.conf ]; then cp /etc/fonts/fonts.conf /tmp/etc/fonts/fonts.conf; fi
+RUN echo '<?xml version="1.0"?>\n<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">\n<fontconfig>\n  <dir>/opt/share/fonts</dir>\n</fontconfig>' > /tmp/etc/fonts/conf.d/01-opt-share-fonts.conf
 RUN for dir in /etc/ImageMagick-*; do \
 		[ -d "$dir" ] && cp -a "$dir" /tmp/share/; \
 	done
@@ -52,3 +53,4 @@ COPY --from=ext /tmp/lib64 /opt/php/lib64/
 COPY --from=ext /tmp/lib/ /opt/lib/
 COPY --from=ext /tmp/share/ /opt/share/
 COPY --from=ext /tmp/etc/fonts/fonts.conf /etc/fonts/fonts.conf
+COPY --from=ext /tmp/etc/fonts/conf.d/01-opt-share-fonts.conf /etc/fonts/conf.d/01-opt-share-fonts.conf
