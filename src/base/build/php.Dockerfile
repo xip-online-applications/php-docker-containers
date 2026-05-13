@@ -33,7 +33,7 @@ RUN tee /etc/supervisor/supervisord.conf > /dev/null <<EOT
 file=/tmp/supervisor.sock
 chmod=0700
 username=henkdevries
-password=liever10indehand
+password=beter5indehand
 [supervisord]
 nodaemon=true
 logfile=/dev/stdout
