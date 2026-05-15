@@ -47,6 +47,8 @@ To undo these dev settings, you can use the `ghcr.io/xip-online-applications/php
 
 Most extensions are consumed by copying only `/opt`. Some extensions can also ship required runtime files outside `/opt`.
 
+#### imagick
+
 For PDF/image rendering with Imagick + Ghostscript, copy both `/opt` and `/etc/fonts` from the Imagick extra image:
 
 ```Dockerfile
@@ -64,7 +66,19 @@ COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-
 Why: `fontconfig` loads default runtime config from `/etc/fonts` (`fonts.conf` + `conf.d`).
 Without these files, rendering may still run but produce font mapping issues in PDF-to-image conversion.
 
-Check the [example](./example) directory for a fully working example of the above within a multi-stage build.
+Also install `poppler-utils` so you can use `pdftoppm` to do proper image conversion:
+
+```Dockerfile
+RUN apt-get update && apt-get install -y poppler-utils && apt-get clean
+```
+
+In PHP, you can use `pdftoppm` kinda like this:
+
+```php
+// Use pdftoppm for accurate rendering of Chromium-generated PDFs
+$process = new Process(['pdftoppm', '-png', '-r', '150', $pdfPath, $outputPrefix]);
+$process->mustRun();
+```
 
 ## Supervisor
 
