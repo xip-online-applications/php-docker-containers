@@ -98,33 +98,35 @@ COPY worker.conf /etc/supervisor/conf.d/worker.conf
 
 See the list of available extensions below:
 
-| Extension | Container                                                                | Notes                                                         |
-|-----------|--------------------------------------------------------------------------|---------------------------------------------------------------|
-| amqp      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp     | Connect to AMQP compatible servers like RabbitMQ              |
-| apcu      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-apcu     | In-memory key-value store for caching user data               |
-| bcmath    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath   | Arbitrary precision mathematics                               |
-| composer  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer | Dependency Manager for PHP                                    |
-| curl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl     | Client URL Library                                            |
-| datadog   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog  | Datadog APM tracing                                           |
-| gd        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd       | Image processing                                              |
-| imagick   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick  | Image processing using ImageMagick                            |
-| intl      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl     | Internationalization functions                                |
-| mbstring  | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring | Multibyte string support                                      |
-| mongodb   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb  | MongoDB and DocumentDB driver                                 |
-| mysql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql    | MySQL and MariaDB driver                                      |
-| opcache   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache  | OPcode cache                                                  |
-| pcntl     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl    | Process Control functions                                     |
-| pcov      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov     | Code coverage driver                                          |
-| pgsql     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pgsql    | PostgreSQL driver                                             |
-| rdkafka   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka  | Kafka client based on librdkafka                              |
-| redis     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis    | Redis and Valkey client                                       |
-| saxonc    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc   | Saxon/C XSLT, XPath, and XQuery processor                     |
-| soap      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap     | SOAP protocol support                                         |
-| sockets   | ghcr.io/xip-online-applications/php-docker-containers/php-extra-sockets  | Low-level socket functions                                    |
-| xdebug    | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug   | Debugger and profiler                                         |
-| xml       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml      | XML parsing and manipulation                                  |
-| xsl       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl      | XSL transformation                                            |
-| zip       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip      | Zip archive handling                                          |
+| Extension     | Container                                                                     | Notes                                            |
+|---------------|-------------------------------------------------------------------------------|--------------------------------------------------|
+| amqp          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-amqp          | Connect to AMQP compatible servers like RabbitMQ |
+| apcu          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-apcu          | In-memory key-value store for caching user data  |
+| bcmath        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-bcmath        | Arbitrary precision mathematics                  |
+| composer      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-composer      | Dependency Manager for PHP                       |
+| curl          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-curl          | Client URL Library                               |
+| datadog       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-datadog       | Datadog APM tracing                              |
+| deepclone     | ghcr.io/xip-online-applications/php-docker-containers/php-extra-deepclone     | Deep-clones any serializable PHP value           |
+| gd            | ghcr.io/xip-online-applications/php-docker-containers/php-extra-gd            | Image processing                                 |
+| imagick       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick       | Image processing using ImageMagick               |
+| intl          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-intl          | Internationalization functions                   |
+| mbstring      | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mbstring      | Multibyte string support                         |
+| mongodb       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mongodb       | MongoDB and DocumentDB driver                    |
+| mysql         | ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql         | MySQL and MariaDB driver                         |
+| opcache       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opcache       | OPcode cache                                     |
+| opentelemetry | ghcr.io/xip-online-applications/php-docker-containers/php-extra-opentelemetry | OpenTelemetry auto-instrumentation               |
+| pcntl         | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcntl         | Process Control functions                        |
+| pcov          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pcov          | Code coverage driver                             |
+| pgsql         | ghcr.io/xip-online-applications/php-docker-containers/php-extra-pgsql         | PostgreSQL driver                                |
+| rdkafka       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-rdkafka       | Kafka client based on librdkafka                 |
+| redis         | ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis         | Redis and Valkey client                          |
+| saxonc        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-saxonc        | Saxon/C XSLT, XPath, and XQuery processor        |
+| soap          | ghcr.io/xip-online-applications/php-docker-containers/php-extra-soap          | SOAP protocol support                            |
+| sockets       | ghcr.io/xip-online-applications/php-docker-containers/php-extra-sockets       | Low-level socket functions                       |
+| xdebug        | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xdebug        | Debugger and profiler                            |
+| xml           | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xml           | XML parsing and manipulation                     |
+| xsl           | ghcr.io/xip-online-applications/php-docker-containers/php-extra-xsl           | XSL transformation                               |
+| zip           | ghcr.io/xip-online-applications/php-docker-containers/php-extra-zip           | Zip archive handling                             |
 
 There are also some environment-specific extensions available:
 
