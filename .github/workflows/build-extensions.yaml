@@ -29,6 +29,7 @@ jobs:
           - composer
           - curl
           - datadog
+          - deepclone
           - gd
           - imagick
           - intl
@@ -36,6 +37,7 @@ jobs:
           - mongodb
           - mysql
           - opcache
+          - opentelemetry
           - pcntl
           - pcov
           - pgsql
