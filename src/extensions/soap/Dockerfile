@@ -3,8 +3,7 @@ ARG PHP_VERSION
 FROM ${REPO}:${PHP_VERSION} AS ext
 
 RUN apt-get update && apt-get install -y libxml2-dev && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get clean
 
 RUN docker-php-ext-configure soap && \
   docker-php-ext-install soap

@@ -7,7 +7,7 @@ ARG TARGETARCH
 
 #VERSION
 # https://www.saxonica.com/download/c.xml
-ARG LIBSAXON_VERSION=12-9-0
+ARG LIBSAXON_VERSION=13-0-0
 ARG LIBSAXON_ARCHITECTURE=linux
 
 ENV SAXONC_HOME=/opt/php/lib64
@@ -15,7 +15,7 @@ ENV SAXONC_HOME=/opt/php/lib64
 # Download saxon lib
 RUN DEBARCH="x86_64"; \
   if [ "${TARGETARCH}" = "arm64" ]; then DEBARCH="arm64"; fi; \
-  DOWNLOAD_URL="https://downloads.saxonica.com/SaxonC/HE/12/SaxonCHE-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-${LIBSAXON_VERSION}.zip"; \
+  DOWNLOAD_URL="https://downloads.saxonica.com/SaxonC/HE/13/SaxonCHE-${LIBSAXON_ARCHITECTURE}-${DEBARCH}-${LIBSAXON_VERSION}.zip"; \
   curl -LsS -o /tmp/libsaxon-setup.zip "$DOWNLOAD_URL"; \
   unzip /tmp/libsaxon-setup.zip -d "/tmp/libsaxon"; \
   mv /tmp/libsaxon/*/* /tmp/libsaxon
