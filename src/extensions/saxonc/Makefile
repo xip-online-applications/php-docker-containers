@@ -7,8 +7,9 @@ include ../common.Makefile
 build: build-8.2 build-8.3 build-8.4 build-8.5
 	echo "Done build."
 
+#VERSION
 build-%:
-	$(MAKE) for-version SAXON_VERSION=12 VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64,linux/arm64
+	$(MAKE) for-version SAXON_VERSION=13 VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE) PLATFORM=linux/amd64,linux/arm64
 
 for-version:
 	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):$(VERSION)-cache --cache-to type=registry,ref=$(REPO_EXT):$(VERSION)-cache,mode=max --platform $(PLATFORM) --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(PHP_VERSION) --file $(SAXON_VERSION).Dockerfile --push .
