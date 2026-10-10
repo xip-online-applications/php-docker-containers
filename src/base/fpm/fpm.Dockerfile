@@ -57,6 +57,16 @@ RUN ln -s /usr/bin/supervisord /opt/bin/supervisord
 
 COPY --from=base /usr/local/etc/php/php.ini /usr/local/etc/php/php.ini
 COPY --from=base /opt /opt
+
+#TODO: Remove this php.ini append after PHP 8.3 is EOL (so after January 2028)
+RUN if [ "$(php -r 'echo PHP_VERSION_ID;')" -lt 80400 ]; then \
+      sed -i \
+        -e '/^session\.sid_length[[:space:]]*=/d' \
+        -e '/^session\.sid_bits_per_character[[:space:]]*=/d' \
+        -e '/^\[Session\]$/a\session.sid_length = 26\nsession.sid_bits_per_character = 5' \
+        /usr/local/etc/php/php.ini; \
+    fi
+
 COPY www.conf /usr/local/etc/php-fpm.d/xiponlineapplications.conf
 
 WORKDIR /var/www/application
