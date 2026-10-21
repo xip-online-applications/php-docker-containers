@@ -27,7 +27,8 @@ jobs:
       name: "base"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make -j4 ${{ inputs.stage }}-base-build RELEASE=${{ inputs.release }}"
+      target: "${{ inputs.stage }}-base-build"
+      args: "RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}
 
@@ -39,6 +40,7 @@ jobs:
       name: "fpm"
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
-      command: "make -j4 ${{ inputs.stage }}-base-fpm RELEASE=${{ inputs.release }}"
+      target: "${{ inputs.stage }}-base-fpm"
+      args: "RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

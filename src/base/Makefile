@@ -7,3 +7,6 @@ build:
 
 build-%:
 	cd $* ; $(MAKE) build RELEASE=$(RELEASE) REPO_BASE=$(REPO)
+
+manifest-%:
+	cd $* ; $(MAKE) manifest RELEASE=$(RELEASE) REPO_BASE=$(REPO)

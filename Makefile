@@ -31,11 +31,20 @@ extensions: # Build the custom extensions
 dev-base-%: # Build a release version for a specific extension
 	cd src/base ; $(MAKE) build-$* RELEASE=$(RELEASE) REPO=$(REPO)
 
+dev-base-%-manifest: # Join the per-architecture images of a base container
+	cd src/base ; $(MAKE) manifest-$* RELEASE=$(RELEASE) REPO=$(REPO)
+
 dev-extension-%: # Build a release version for a specific extension
 	cd src/extensions ; $(MAKE) dev-ext-$* RELEASE=$(RELEASE) REPO=$(REPO) DEV_BUILD_VERSION=$(DEV_BUILD_VERSION)
 
+dev-extension-%-manifest: # Join the per-architecture images of an extension
+	cd src/extensions ; $(MAKE) dev-ext-manifest-$* RELEASE=$(RELEASE) REPO=$(REPO) DEV_BUILD_VERSION=$(DEV_BUILD_VERSION)
+
 dev-env-%: # Build a release version for a specific environment
 	cd src/envs ; $(MAKE) env-$* RELEASE=$(RELEASE) REPO=$(REPO)
+
+dev-env-%-manifest: # Join the per-architecture images of an environment
+	cd src/envs ; $(MAKE) env-manifest-$* RELEASE=$(RELEASE) REPO=$(REPO)
 
 ## Release stuff
 
@@ -51,8 +60,17 @@ release-extensions: # Build a release version for the extensions
 release-base-%: # Build a release version for a specific extension
 	cd src/base ; $(MAKE) build-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
+release-base-%-manifest: # Join the per-architecture images of a base container
+	cd src/base ; $(MAKE) manifest-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
 release-extension-%: # Build a release version for a specific extension
 	cd src/extensions ; $(MAKE) ext-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
 
+release-extension-%-manifest: # Join the per-architecture images of an extension
+	cd src/extensions ; $(MAKE) ext-manifest-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
 release-env-%: # Build a release version for a specific environment
 	cd src/envs ; $(MAKE) env-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
+
+release-env-%-manifest: # Join the per-architecture images of an environment
+	cd src/envs ; $(MAKE) env-manifest-$* RELEASE=$(RELEASE) REPO=$(PROD_REPO)
