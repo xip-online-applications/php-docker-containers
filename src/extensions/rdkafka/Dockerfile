@@ -6,13 +6,18 @@ RUN apt-get update \
   && apt-get install -y build-essential git libsasl2-dev libssl-dev zlib1g-dev \
   && apt-get clean
 
+# https://github.com/confluentinc/librdkafka/releases
+
+#VERSION
+ARG LIBRDKAFKA_VERSION=v2.16.0
+
 WORKDIR /tmp
 
-RUN git clone --branch master --depth 1 https://github.com/confluentinc/librdkafka.git
+RUN git clone --branch ${LIBRDKAFKA_VERSION} --depth 1 https://github.com/confluentinc/librdkafka.git
 
 WORKDIR /tmp/librdkafka
 RUN ./configure \
-  && make \
+  && make -j$(nproc) \
   && make install \
   && MAKE="make -j$(nproc)" pecl install rdkafka \
   && docker-php-ext-enable rdkafka

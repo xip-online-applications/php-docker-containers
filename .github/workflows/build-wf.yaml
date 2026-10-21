@@ -21,7 +21,8 @@ on:
         required: true
 
 concurrency:
-  group: build-${{ inputs.name }}
+  # Releases push to a different repository than dev builds, so they don't have to wait for them.
+  group: build-${{ inputs.name }}-${{ github.event_name == 'release' && 'release' || 'dev' }}
   queue: max
   cancel-in-progress: false
 
