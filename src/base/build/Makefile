@@ -22,8 +22,8 @@ manifest-version-%:
 	$(MAKE) manifest-version VERSION=$* RELEASE=$(RELEASE)
 
 for-version:
-	docker buildx build --cache-from type=registry,ref=$(REPO_BUILD):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO_BUILD):$(VERSION)-cache$(ARCH_SUFFIX),mode=max --platform $(PLATFORMS) --tag $(REPO_BUILD):$(RELEASE_TAG)$(ARCH_SUFFIX) --file $(BASE_DOCKERFILE) --push .
-	docker buildx build --cache-from type=registry,ref=$(REPO):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO):$(VERSION)-cache$(ARCH_SUFFIX),mode=max --platform $(PLATFORMS) --tag $(REPO):$(RELEASE_TAG)$(ARCH_SUFFIX) --file php.Dockerfile --build-arg REPO_BUILD=$(REPO_BUILD) --build-arg RELEASE_TAG=$(RELEASE_TAG) --build-arg ARCH_SUFFIX=$(ARCH_SUFFIX) --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO_BUILD):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO_BUILD):$(VERSION)-cache$(ARCH_SUFFIX),mode=min --platform $(PLATFORMS) --tag $(REPO_BUILD):$(RELEASE_TAG)$(ARCH_SUFFIX) --file $(BASE_DOCKERFILE) --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO):$(VERSION)-cache$(ARCH_SUFFIX),mode=min --platform $(PLATFORMS) --tag $(REPO):$(RELEASE_TAG)$(ARCH_SUFFIX) --file php.Dockerfile --build-arg REPO_BUILD=$(REPO_BUILD) --build-arg RELEASE_TAG=$(RELEASE_TAG) --build-arg ARCH_SUFFIX=$(ARCH_SUFFIX) --push .
 	$(if $(ARCH),,docker buildx imagetools create --tag $(REPO):$(RELEASE_TAG_SHORT) $(REPO):$(RELEASE_TAG))
 
 manifest-version:

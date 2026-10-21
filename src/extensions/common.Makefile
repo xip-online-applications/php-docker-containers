@@ -22,7 +22,7 @@ manifest-%:
 	$(MAKE) manifest-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
 
 for-version:
-	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX),mode=max --platform $(PLATFORMS) --pull --tag $(REPO_EXT):$(RELEASE_TAG)$(ARCH_SUFFIX) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(RELEASE_TAG) --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX),mode=min --platform $(PLATFORMS) --pull --tag $(REPO_EXT):$(RELEASE_TAG)$(ARCH_SUFFIX) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(RELEASE_TAG) --push .
 	$(if $(ARCH),,docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG))
 
 manifest-version:
