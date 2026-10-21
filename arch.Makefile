@@ -7,8 +7,5 @@ ALL_PLATFORMS := linux/amd64,linux/arm64
 PLATFORMS := $(if $(ARCH),linux/$(ARCH),$(ALL_PLATFORMS))
 ARCH_SUFFIX := $(if $(ARCH),-$(ARCH))
 
-# Prefix for registry commands: retries them when ghcr.io rate-limits the request.
-RETRY := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))/retry-on-rate-limit.sh
-
 # $(call join-arches,<image>,<tag>) points <image>:<tag> at <image>:<tag>-<arch> for every arch.
-join-arches = $(RETRY) docker buildx imagetools create --tag $(1):$(2) $(foreach arch,$(ARCHES),$(1):$(2)-$(arch))
+join-arches = docker buildx imagetools create --tag $(1):$(2) $(foreach arch,$(ARCHES),$(1):$(2)-$(arch))
