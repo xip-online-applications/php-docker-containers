@@ -21,6 +21,10 @@ jobs:
     name: Build ${{ matrix.extension }}
     uses: ./.github/workflows/build-extension-wf.yaml
     strategy:
+      # Native runners finish fast enough that running every extension at once hits the ghcr.io
+      # rate limit, and one failed extension shouldn't cancel all the others.
+      fail-fast: false
+      max-parallel: 8
       matrix:
         extension:
           - amqp
