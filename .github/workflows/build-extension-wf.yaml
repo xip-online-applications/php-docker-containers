@@ -26,6 +26,7 @@ jobs:
       name: ${{ inputs.extension }}
       registry: ghcr.io
       actor: ${{ inputs.actor }}
-      command: "make -j4 ${{ inputs.stage }}-extension-${{ inputs.extension }} RELEASE=${{ inputs.release }}"
+      target: "${{ inputs.stage }}-extension-${{ inputs.extension }}"
+      args: "RELEASE=${{ inputs.release }}"
     secrets:
       token: ${{ secrets.token }}

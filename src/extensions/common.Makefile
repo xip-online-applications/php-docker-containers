@@ -1,6 +1,6 @@
 include $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))/../../common.Makefile
 
-.PHONY: build build-% for-version
+.PHONY: build build-% for-version manifest manifest-version
 
 REPO_EXT := $(REPO_BASE)-$(notdir $(CURDIR))
 
@@ -12,9 +12,19 @@ BUILD_PREREQS ?= build-8.2 build-8.3 build-8.4 build-8.5
 build: $(BUILD_PREREQS)
 	echo "Done build."
 
+manifest: $(BUILD_PREREQS:build-%=manifest-%)
+	echo "Done joining."
+
 build-%:
 	$(MAKE) for-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
 
+manifest-%:
+	$(MAKE) manifest-version VERSION=$* RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+
 for-version:
-	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):$(VERSION)-cache --cache-to type=registry,ref=$(REPO_EXT):$(VERSION)-cache,mode=max --platform linux/amd64,linux/arm64 --pull --tag $(REPO_EXT):$(RELEASE_TAG) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(RELEASE_TAG) --push .
+	docker buildx build --cache-from type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX) --cache-to type=registry,ref=$(REPO_EXT):$(VERSION)-cache$(ARCH_SUFFIX),mode=max --platform $(PLATFORMS) --pull --tag $(REPO_EXT):$(RELEASE_TAG)$(ARCH_SUFFIX) --build-arg REPO=$(REPO) --build-arg PHP_VERSION=$(RELEASE_TAG) --push .
+	$(if $(ARCH),,docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG))
+
+manifest-version:
+	$(call join-arches,$(REPO_EXT),$(RELEASE_TAG))
 	docker buildx imagetools create --tag $(REPO_EXT):$(RELEASE_TAG_SHORT) $(REPO_EXT):$(RELEASE_TAG)

@@ -7,3 +7,6 @@ build: env-dev env-prod
 
 env-%:
 	cd $* ; $(MAKE) build RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+
+env-manifest-%:
+	cd $* ; $(MAKE) manifest RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)

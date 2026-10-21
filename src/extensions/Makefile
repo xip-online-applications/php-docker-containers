@@ -9,3 +9,9 @@ ext-%:
 
 dev-ext-%:
 	cd $* ; $(MAKE) build-$(DEV_BUILD_VERSION) RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+
+ext-manifest-%:
+	cd $* ; $(MAKE) manifest RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)
+
+dev-ext-manifest-%:
+	cd $* ; $(MAKE) manifest-$(DEV_BUILD_VERSION) RELEASE=$(RELEASE) REPO=$(REPO) REPO_BASE=$(REPO_BASE)

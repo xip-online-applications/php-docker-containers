@@ -1,7 +1,8 @@
 ARG REPO_BUILD
 ARG RELEASE_TAG
+ARG ARCH_SUFFIX=""
 
-FROM ${REPO_BUILD}:${RELEASE_TAG}
+FROM ${REPO_BUILD}:${RELEASE_TAG}${ARCH_SUFFIX}
 
 LABEL org.opencontainers.image.source="https://github.com/xip-online-applications/php-docker-containers"
 LABEL org.opencontainers.image.description="XIP Docker containers: PHP base container"
