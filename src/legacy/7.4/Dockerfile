@@ -8,10 +8,14 @@
 # - PHP is built from a pinned php-src commit instead of the php.net release tarball (there is none for this patch).
 # - cli and fpm are targets of one Dockerfile; the shared build step lives in docker-php-build.
 # - Bullseye stays the base image: PHP 7.4 doesn't build against OpenSSL 3 (bookworm and later).
+#   It is end of life too, so apt uses archive.debian.org and gets no further security updates.
 #
 # Build: docker buildx build --target cli|fpm .
 
 FROM debian:bullseye-slim AS base
+
+# Debian 11 (bullseye) is end of life and its packages have moved to archive.debian.org.
+RUN sed -i 's|deb.debian.org|archive.debian.org|g' /etc/apt/sources.list
 
 # prevent Debian's PHP packages from being installed
 # https://github.com/docker-library/php/pull/542
