@@ -1,7 +1,7 @@
 include common.Makefile
 .PHONY: prepare docker-login all base extensions release
 
-DEV_BUILD_VERSION := 8.5
+DEV_BUILD_VERSION := 8.6
 
 prepare:
 	docker buildx inspect php-builder >/dev/null 2>&1 || docker buildx create --name php-builder --platform "linux/amd64,linux/arm64" --driver docker-container --use

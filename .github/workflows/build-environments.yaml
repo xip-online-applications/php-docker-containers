@@ -28,7 +28,7 @@ jobs:
       registry: ${{ inputs.registry }}
       actor: ${{ inputs.actor }}
       target: "${{ inputs.stage }}-env-dev"
-      args: "RELEASE=${{ inputs.release }} DEV_BUILD_VERSION=8.5"
+      args: "RELEASE=${{ inputs.release }} DEV_BUILD_VERSION=8.6"
     secrets:
       token: ${{ secrets.token }}
 

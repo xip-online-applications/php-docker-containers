@@ -4,10 +4,10 @@ RELEASE_TAG_SHORT := $(VERSION)-$(SAXON_VERSION)
 
 include ../common.Makefile
 
-build: build-8.2 build-8.3 build-8.4 build-8.5
+build: build-8.2 build-8.3 build-8.4 build-8.5 build-8.6
 	echo "Done build."
 
-manifest: manifest-8.2 manifest-8.3 manifest-8.4 manifest-8.5
+manifest: manifest-8.2 manifest-8.3 manifest-8.4 manifest-8.5 manifest-8.6
 	echo "Done joining."
 
 build-%:
