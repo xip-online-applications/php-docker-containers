@@ -17,6 +17,7 @@ This project follows the [PHP supported versions](https://www.php.net/supported-
 | 8.3         | - [ ]       | 31 December 2027 |
 | 8.4         | - [x]       | 31 December 2028 |
 | 8.5         | - [x]       | 31 December 2029 |
+| 8.6         | - [ ]       | 31 December 2030 |
 
 Containers still exist for older PHP versions (until we run out of disk space), but they are not actively maintained any more.
 
@@ -25,20 +26,20 @@ Containers still exist for older PHP versions (until we run out of disk space), 
 Using this project is fairly easy. You start your Dockerfile with the base container. The base containers live in registry `ghcr.io/xip-online-applications/php-docker-containers/php` and are versioned like this: `<PHP VERSION>[.<CONTAINER RELEASE VERSION>][-fpm]`. Example for PHP-FPM version 8:
 
 ```Dockerfile
-FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.5-fpm
+FROM ghcr.io/xip-online-applications/php-docker-containers/php:8.6-fpm
 ```
 
 Now, let's say you want to use the extensions MySQL and Redis. Each extension lives in its registry, like `ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql` for MySQL. The versioning is the same as with the base image; `<PHP VERSION>[.<CONTAINER RELEASE VERSION>]`. All you have to do is copy the `/opt` dir off the extension image to the `/opt` directory in your image. You can add them to your Dockerfile like this:
 
 ```Dockerfile
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.5 /opt /opt
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-mysql:8.6 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-redis:8.6 /opt /opt
 ```
 
 Now if you want to use some development tools like xDebug and use development settings, you can use the `ghcr.io/xip-online-applications/php-docker-containers/php-extra-dev` image:
 
 ```Dockerfile
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-dev:8.5 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-dev:8.6 /opt /opt
 ```
 
 To undo these dev settings, you can use the `ghcr.io/xip-online-applications/php-docker-containers/php-extra-prod` AFTER the dev extension.
@@ -52,15 +53,15 @@ Most extensions are consumed by copying only `/opt`. Some extensions can also sh
 For PDF/image rendering with Imagick + Ghostscript, copy both `/opt` and `/etc/fonts` from the Imagick extra image:
 
 ```Dockerfile
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /opt /opt
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.5 /etc/fonts /etc/fonts
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.6 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-extra-imagick:8.6 /etc/fonts /etc/fonts
 ```
 
 If you use the development variant:
 
 ```Dockerfile
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.5 /opt /opt
-COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.5 /etc/fonts /etc/fonts
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.6 /opt /opt
+COPY --from=ghcr.io/xip-online-applications/php-docker-containers/php-dev-extra-imagick:8.6 /etc/fonts /etc/fonts
 ```
 
 Why: `fontconfig` loads default runtime config from `/etc/fonts` (`fonts.conf` + `conf.d`).

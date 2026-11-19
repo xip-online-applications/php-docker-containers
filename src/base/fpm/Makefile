@@ -9,10 +9,10 @@ RELEASE_TAG := $(VERSION).$(RELEASE)
 RELEASE_TAG_SHORT := $(VERSION)
 BASE_DOCKERFILE := $(if $(wildcard $(VERSION)/manual.Dockerfile),$(VERSION)/manual.Dockerfile,$(VERSION)/Dockerfile)
 
-build: for-version-8.2 for-version-8.3 for-version-8.4 for-version-8.5
+build: for-version-8.2 for-version-8.3 for-version-8.4 for-version-8.5 for-version-8.6
 	echo "Done building FPM images."
 
-manifest: manifest-version-8.2 manifest-version-8.3 manifest-version-8.4 manifest-version-8.5
+manifest: manifest-version-8.2 manifest-version-8.3 manifest-version-8.4 manifest-version-8.5 manifest-version-8.6
 	echo "Done joining FPM images."
 
 for-version-%:
